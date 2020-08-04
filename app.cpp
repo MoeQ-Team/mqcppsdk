@@ -10,6 +10,13 @@ __declspec(dllexport) int Initialize(int64_t AuthCode)
 	return 1;
 }
 
+__declspec(dllexport) void MQ_StartUp()
+{
+	//Write your init code here
+	//在此编写您的初始化代码
+
+}
+
 
 
 BOOL APIENTRY DllMain(HMODULE hModule,
@@ -17,13 +24,9 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 	LPVOID lpReserved
 )
 {
-	switch (ul_reason_for_call)
-	{
-	case DLL_PROCESS_ATTACH:
-	case DLL_THREAD_ATTACH:
-	case DLL_THREAD_DETACH:
-	case DLL_PROCESS_DETACH:
-		break;
-	}
+	//Please don't write any code in zhe function
+	//请勿在此函数写任何代码
+	//Write your init code in the function MQ_StartUp
+	//在函数MQ_StartUp中编写您的初始化代码
 	return TRUE;
 }
