@@ -1,5 +1,7 @@
 #pragma once
 #include "Pack.h"
+#include "Event.hpp"
+#define MOEQ_SDK_VERSION 1
 
 // Follow is MoeQ dll call defined
 #define FUNC(ReturnType, FuncName, ...) static ReturnType(__stdcall *##FuncName)(__VA_ARGS__);
