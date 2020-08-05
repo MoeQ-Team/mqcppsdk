@@ -6,18 +6,6 @@
 #include <vector>
 #include <chrono>
 
-#include "..\openssl\md5.h"
-
-#pragma comment(lib, "crypt32.lib")
-#if _WIN64
-#pragma comment(lib, "lib\\openssl_lib_windows\\x64\\libcrypto.lib")
-#else
-#pragma comment(lib, "..\\lib\\openssl_lib_windows\\x86\\libcrypto.lib")
-#endif
-
-
-
-
 namespace Utils
 {
 	byte* MD5(const byte* bin, const size_t length);

@@ -2,13 +2,7 @@
 
 byte* Utils::MD5(const byte* bin, const size_t length)
 {
-	MD5_CTX ctx;
-	byte md5[16];
 
-	MD5_Init(&ctx);
-	MD5_Update(&ctx, bin, length);
-	MD5_Final(md5, &ctx);
-	return md5;
 }
 
 long Utils::CurrentTimeMillis()
@@ -38,6 +32,7 @@ uint XBin::Bin2Int(const byte* bin)
 {
 	return bin[0] << 24 | bin[1] << 16 | bin[2] << 8 | bin[3];
 }
+
 /// <summary>
 /// Utf8×Ö·û´®×ªWindows Unicode
 /// </summary>

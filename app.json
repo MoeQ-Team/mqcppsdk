@@ -1,0 +1,127 @@
+// MoeQ 的Json文件支持以 // 开头的注释。
+// 请将插件的 app.dll 和 app.json 文件放在 dev/[appid]/ 目录下
+// 如 appid=com.moeq.demo, 则dll及json文件需分别放到 dev/com.example.demo/app.dll,dev/com.example.demo/app.json
+{
+  "name": "MoeQ Example Plugin", // 插件名称
+  "version": "1.0.0", // 插件版本
+  "author": "Simplxs", // 插件作者
+  "description": "description", // 插件描述
+  "event": [ // 事件列表（发布前请删除无用事件）
+    {
+      "id": 0, //MoeQ生命周期事件
+      "function": "MQ_LifeCycleEvent", //事件对应函数
+      "event": [
+        {
+          "id": 100, //MoeQ启动事件
+          "priority": 30000 //事件优先级
+        },
+        {
+          "id": 101, //MoeQ关闭事件
+          "priority": 30000
+        },
+        {
+          "id": 102, //插件已被启用
+          "priority": 30000
+        },
+        {
+          "id": 103, //插件将被停用
+          "priority": 30000
+        }
+      ]
+    },
+    {
+      "id": 1, //MoeQ消息事件
+      "function": "MQ_MessageEvent",
+      "event": [
+        {
+          "id": 1000, //私聊消息处理
+          "priority": 30000
+        },
+        {
+          "id": 1001, //群消息处理
+          "priority": 30000
+        },
+        {
+          "id": 1002, //讨论组消息处理
+          "priority": 30000
+        }
+      ]
+    },
+    {
+      "id": 2, //MoeQ提醒事件
+      "function": "MQ_NoticeEvent",
+      "event": [
+        {
+          "id": 1003, //群文件上传
+          "priority": 30000
+        },
+        {
+          "id": 1004, //群管理员变动
+          "priority": 30000
+        },
+        {
+          "id": 1005, //群成员数量变动
+          "priority": 30000
+        },
+        {
+          "id": 1006, //群禁言
+          "priority": 30000
+        },
+        {
+          "id": 1007, //好友已添加
+          "priority": 30000
+        }
+      ]
+    },
+    {
+      "id": 3, //MoeQ请求事件
+      "function": "MQ_RequestEvent",
+      "event": [
+        {
+          "id": 1008, //加好友
+          "priority": 30000
+        },
+        {
+          "id": 1009, //加群
+          "priority": 30000
+        }
+      ]
+    }
+  ],
+  "menu": { // 设置菜单（发布前请删除无用菜单，如果无需设置菜单请全部删除）
+    "event": "Menu",
+    "menus": [
+      {
+        "name": "SettingA", //菜单名称
+        "id": 0
+      },
+      {
+        "name": "SettingB",
+        "id": 1
+      }
+    ]
+  }
+  "auth": [ // 插件权限（发布前请删除无用权限）
+    //10, //[敏感]取Cookies   getCookies / getCsrfToken
+    //11, //[敏感]发送赞      sendLike
+    //12, //[敏感]置群退出    setGroupLeave
+    //13, //[敏感]置讨论组退出 setDiscussLeave
+    //30, //接收语音          getRecord
+    100, //发送私聊消息       sendPrivateMsg
+    101, //发送群消息         sendGroupMsg
+    102, //发送讨论组消息     sendDiscussMsg
+    103, //撤回消息           deleteMsg
+    110, //移除群员           setGroupKick
+    111, //置群管理员         setGroupAdmin
+    112, //置群禁言           setGroupWholeBan
+    113, //置群成员名片       setGroupCard
+    120, //取群成员信息       getGroupMemberInfo
+    121, //取陌生人信息       getStrangerInfo
+    122, //取群信息           getGroupInfo
+    130, //置好友添加请求     setFriendAddRequest
+    131, //置群添加请求       setGroupAddRequest
+    140, //取好友列表         getFriendList
+    141, //取群列表           getGroupList
+    142 //取群成员列表         getGroupMemberList
+  ]
+}
