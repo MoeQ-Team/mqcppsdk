@@ -1,6 +1,6 @@
 #include "MoeQ.h"
 
-void MoeQ::SetAuthCode(int64_t _AuthCode)
+void MoeQ::SetAuthCode(uint64_t _AuthCode)
 {
 	AuthCode = _AuthCode;
 }
@@ -13,7 +13,7 @@ std::vector<MoeQ::FriendInfo>* MoeQ::GetFriendList()
 	FriendList->resize(length);
 	for (size_t i = 0; i < length; i++)
 	{
-		(*FriendList)[i].QQ= UnPack.GetInt();
+		(*FriendList)[i].QQ = UnPack.GetInt();
 #if _WIN64
 		(*FriendList)[i].Nick = (char*)UnPack.GetLong();
 #else
@@ -37,12 +37,6 @@ std::vector<MoeQ::GroupInfo>* MoeQ::GetGroupList()
 	GroupList->resize(length);
 	for (size_t i = 0; i < length; i++)
 	{
-		uint GroupCode;
-		char* GroupName;
-		uint MasterQQ;
-		int16_t MemberCount;
-		byte SelfIdentity;
-
 		(*GroupList)[i].GroupCode = UnPack.GetInt();
 #if _WIN64
 		(*GroupList)[i].GroupName = (char*)UnPack.GetLong();

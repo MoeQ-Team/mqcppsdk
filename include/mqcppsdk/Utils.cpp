@@ -1,10 +1,5 @@
 #include "Utils.h"
 
-byte* Utils::MD5(const byte* bin, const size_t length)
-{
-
-}
-
 long Utils::CurrentTimeMillis()
 {
 	return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();

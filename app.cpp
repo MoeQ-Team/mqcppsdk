@@ -10,7 +10,7 @@ MoeQ MQ;
 /// </summary>
 /// <param name="AuthCode">AuthCode 授权码</param>
 /// <returns>Sdk version Sdk版本</returns>
-__declspec(dllexport) int Initialize(int64_t AuthCode)
+extern "C" __declspec(dllexport) int Initialize(uint64_t AuthCode)
 {
 	//Please don't write any code in zhe function
 	//请勿在此函数写任何代码
@@ -23,7 +23,7 @@ __declspec(dllexport) int Initialize(int64_t AuthCode)
 /// MoeQ插件生命周期事件(事件ID 0,100-103)
 /// </summary>
 /// <param name="LifeCycleEventType">Life cycle event type 生命周期事件类型</param>
-__declspec(dllexport) void MQ_LifeCycleEvent(Event::LifeCycleEvent::LifeCycleEventType::_LifeCycleEventType LifeCycleEventType)
+extern "C" __declspec(dllexport) void MQ_LifeCycleEvent(Event::LifeCycleEvent::LifeCycleEventType::_LifeCycleEventType LifeCycleEventType)
 {
 	switch (LifeCycleEventType)
 	{
@@ -65,7 +65,7 @@ __declspec(dllexport) void MQ_LifeCycleEvent(Event::LifeCycleEvent::LifeCycleEve
 /// <param name="Msg">Received Message 收到消息</param>
 /// <param name="MsgID">Message ID 消息ID</param>
 /// <returns>Block or Ignore 阻塞或忽略</returns>
-__declspec(dllexport) Event::ReturnType::_ReturnType MQ_MessageEvent(Target::Target Target, Message::Msg Msg, uint MsgID)
+extern "C" __declspec(dllexport) Event::ReturnType::_ReturnType MQ_MessageEvent(Target::Target Target, Message::Msg Msg, uint MsgID)
 {
 	switch (Target.TargetType)
 	{
@@ -101,7 +101,7 @@ __declspec(dllexport) Event::ReturnType::_ReturnType MQ_MessageEvent(Target::Tar
 /// </summary>
 /// <param name="NoticeEvent">Notice event information 提醒事件信息</param>
 /// <returns>Block or Ignore 阻塞或忽略</returns>
-__declspec(dllexport) Event::ReturnType::_ReturnType MQ_NoticeEvent(Event::NoticeEvent::NoticeEvent NoticeEvent)
+extern "C" __declspec(dllexport) Event::ReturnType::_ReturnType MQ_NoticeEvent(Event::NoticeEvent::NoticeEvent NoticeEvent)
 {
 	switch (NoticeEvent.NoticeEventType)
 	{
@@ -135,7 +135,7 @@ __declspec(dllexport) Event::ReturnType::_ReturnType MQ_NoticeEvent(Event::Notic
 /// </summary>
 /// <param name="RequestEvent">Request event information 请求事件信息</param>
 /// <returns>Agree,Disagree or Ignore 同意,不同意或忽略</returns>
-__declspec(dllexport) Event::RequestEvent::ReturnType::_ReturnType MQ_RequestEvent(Event::RequestEvent::RequestEvent RequestEvent, uint responseFlag)
+extern "C" __declspec(dllexport) Event::RequestEvent::ReturnType::_ReturnType MQ_RequestEvent(Event::RequestEvent::RequestEvent RequestEvent, uint responseFlag)
 {
 	switch (RequestEvent.RequestEventType)
 	{
@@ -156,7 +156,7 @@ __declspec(dllexport) Event::RequestEvent::ReturnType::_ReturnType MQ_RequestEve
 /// 用户打开菜单
 /// </summary>
 /// <param name="ID">Menu ID 菜单ID</param>
-__declspec(dllexport) void Menu(uint ID)
+extern "C" __declspec(dllexport) void Menu(uint ID)
 {
 	switch (ID)
 	{

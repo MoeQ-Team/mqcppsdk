@@ -55,8 +55,8 @@ namespace Message
 		uint Time;
 		Message::Msg* Msg = nullptr;
 	};
-
-	void Message::DestoryMsg(Message::Msg* Msg)
+	/*
+	void DestoryMsg(Message::Msg* Msg)
 	{
 		Message::Msg* ThisMsg = Msg;
 		while (ThisMsg != nullptr)
@@ -100,7 +100,7 @@ namespace Message
 			delete ThisMsg;
 			ThisMsg = tmp;
 		};
-	}
+	}*/
 };
 
 namespace Target
@@ -186,7 +186,7 @@ namespace Event
 		{
 			char* Name;
 			char* ID;
-			int64_t size;
+			uint64_t size;
 		};
 
 		struct group_fileupload
