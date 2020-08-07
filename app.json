@@ -27,7 +27,7 @@ MoeQ 的Json文件支持单行注释和多行注释
           "priority": 2
         },
         {
-          "id": 4, //插件将被停用
+          "id": 3, //插件将被停用
           "priority": 2
         }
       ]
@@ -67,7 +67,7 @@ MoeQ 的Json文件支持单行注释和多行注释
           "priority": 2
         },
         {
-          "id": 4, //好友已添加
+          "id": 3, //好友已添加
           "priority": 2
         }
       ]
@@ -90,33 +90,32 @@ MoeQ 的Json文件支持单行注释和多行注释
   "menu": { // 设置菜单(发布前请删除无用菜单，如果无需设置菜单请全部删除)
     "function": "Menu",
     "caption": [
-        "SettingA", //菜单名称(id 0)
-        "SettingB", //id 1
-        "SettingC"  //id 2
-        //id 以此类推
+        "SettingA", //菜单名称(id从0递增)
+        "SettingB", 
+        "SettingC"
     ]
   },
   "auth": [ // 插件权限(发布前请删除无用权限)
     //1, //[敏感]取Cookies   getCookies / getCsrfToken
     //2, //[敏感]发送赞      sendLike
-    //4, //[敏感]置群退出    setGroupLeave
-    //8, //[敏感]置讨论组退出 setDiscussLeave
-    //16, //接收语音          getRecord
-    32, //发送私聊消息       sendPrivateMsg
-    64, //发送群消息         sendGroupMsg
-    128, //发送讨论组消息     sendDiscussMsg
-    256, //撤回消息           deleteMsg
-    512, //移除群员           setGroupKick
-    1024, //置群管理员         setGroupAdmin
-    2048, //置群禁言           setGroupWholeBan
-    4096, //置群成员名片       setGroupCard
-    8192, //取群成员信息       getGroupMemberInfo
-    16384, //取陌生人信息       getStrangerInfo
-    32768, //取群信息           getGroupInfo
-    65536, //置好友添加请求     setFriendAddRequest
-    131072, //置群添加请求       setGroupAddRequest
-    262144, //取好友列表         getFriendList
-    524288, //取群列表           getGroupList
-    1048576 //取群成员列表         getGroupMemberList
+    //3, //[敏感]置群退出    setGroupLeave
+    //4, //[敏感]置讨论组退出 setDiscussLeave
+    //5, //接收语音          getRecord
+    6, //发送私聊消息       sendPrivateMsg
+    7, //发送群消息         sendGroupMsg
+    8, //发送讨论组消息     sendDiscussMsg
+    9, //撤回消息           deleteMsg
+    10, //移除群员           setGroupKick
+    11, //置群管理员         setGroupAdmin
+    12, //置群禁言           setGroupWholeBan
+    13, //置群成员名片       setGroupCard
+    14, //取群成员信息       getGroupMemberInfo
+    15, //取陌生人信息       getStrangerInfo
+    16, //取群信息           getGroupInfo
+    17, //置好友添加请求     setFriendAddRequest
+    18, //置群添加请求       setGroupAddRequest
+    19, //取好友列表         getFriendList
+    20, //取群列表           getGroupList
+    21 //取群成员列表         getGroupMemberList
   ]
 }

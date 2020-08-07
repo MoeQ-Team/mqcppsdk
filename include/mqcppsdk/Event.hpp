@@ -1,23 +1,21 @@
 #pragma once
 namespace Message
 {
-	namespace MsgType {
-		enum _MsgType
-		{
-			text = 1,
-			classcal_face = 2,
-			expression = 6,
-			picture = 8,
-			xml = 12,
-			red_packet = 56,
-			reply = 93,
-			json = 115,
-		};
+	enum class MsgType
+	{
+		text = 1,
+		classcal_face = 2,
+		expression = 6,
+		picture = 8,
+		xml = 12,
+		red_packet = 56,
+		reply = 93,
+		json = 115,
 	};
 
 	struct Msg
 	{
-		MsgType::_MsgType MsgType;
+		MsgType MsgType;
 		Msg* NextPoint = nullptr;
 		void* Message;
 	};
@@ -105,18 +103,16 @@ namespace Message
 
 namespace Target
 {
-	namespace TargetType {
-		enum _TargetType
-		{
-			_private = 0,
-			group = 1,
-			discuss = 2,
-		};
+	enum class TargetType
+	{
+		_private = 0,
+		group = 1,
+		discuss = 2,
 	};
 
 	struct Target
 	{
-		TargetType::_TargetType TargetType;
+		TargetType TargetType;
 		void* Sender;
 	};
 
@@ -141,44 +137,36 @@ namespace Target
 
 namespace Event
 {
-	namespace ReturnType
+	enum class ReturnType
 	{
-		enum _ReturnType
-		{
-			ignore, //Ignore 忽略
-			block, //Block 阻塞
-		};
-	}
+		ignore, //Ignore 忽略
+		block, //Block 阻塞
+	};
 
 	namespace LifeCycleEvent
 	{
-		namespace LifeCycleEventType
-		{
-			enum _LifeCycleEventType {
-				StartUp,
-				ShutDown,
-				PluginEnabled,
-				PluginDisabled
-			};
-		}
+		enum class LifeCycleEventType {
+			StartUp,
+			ShutDown,
+			PluginEnabled,
+			PluginDisabled
+		};
 	}
 
-	namespace NoticeEvent 
+	namespace NoticeEvent
 	{
-		namespace NoticeEventType
-		{
-			enum _NoticeEventType {
-				group_fileupload, //Group file upload 群文件上传
-				group_adminchange, //Group administrator changes 群管理员变动
-				group_memberchange, //The change in the number of group members 群成员数量变动
-				group_mute, //Group ban 群禁言
-				friend_added, //Friend added 好友已添加
-			};
-		}
+		enum class NoticeEventType {
+			group_fileupload, //Group file upload 群文件上传
+			group_adminchange, //Group administrator changes 群管理员变动
+			group_memberchange, //The change in the number of group members 群成员数量变动
+			group_mute, //Group ban 群禁言
+			friend_added, //Friend added 好友已添加
+		};
+
 
 		struct NoticeEvent
 		{
-			Event::NoticeEvent::NoticeEventType::_NoticeEventType NoticeEventType;
+			Event::NoticeEvent::NoticeEventType NoticeEventType;
 			void* Information;
 		};
 
@@ -186,7 +174,7 @@ namespace Event
 		{
 			char* Name;
 			char* ID;
-			uint64_t size;
+			unsigned long long size;
 		};
 
 		struct group_fileupload
@@ -223,27 +211,21 @@ namespace Event
 
 	namespace RequestEvent
 	{
-		namespace RequestEventType
-		{
-			enum _RequestEventType {
-				add_friend,
-				add_group
-			};
-		}
+		enum class RequestEventType {
+			add_friend,
+			add_group
+		};
 
-		namespace ReturnType
+		enum class ReturnType
 		{
-			enum _ReturnType
-			{
-				agree, //Agree 同意
-				disagree, //Disagree 不同意
-				ignore, //Ignore 忽略
-			};
-		}
+			agree, //Agree 同意
+			disagree, //Disagree 不同意
+			ignore, //Ignore 忽略
+		};
 
 		struct RequestEvent
 		{
-			Event::RequestEvent::RequestEventType::_RequestEventType RequestEventType;
+			Event::RequestEvent::RequestEventType RequestEventType;
 			void* Information;
 		};
 

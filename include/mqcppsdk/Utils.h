@@ -2,7 +2,6 @@
 #include "Defined.h"
 
 #include <Windows.h>
-#include <winnls.h>
 #include <vector>
 #include <chrono>
 

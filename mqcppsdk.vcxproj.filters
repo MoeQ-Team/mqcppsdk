@@ -17,10 +17,10 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\mqcppsdk\MoeQ.h">
+    <ClInclude Include="include\mqcppsdk\Event.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\mqcppsdk\Event.hpp">
+    <ClInclude Include="include\mqcppsdk\mqcppsdk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -37,7 +37,7 @@
     <ClCompile Include="include\mqcppsdk\Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="include\mqcppsdk\MoeQ.cpp">
+    <ClCompile Include="include\mqcppsdk\mqcppsdk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,5 +45,10 @@
     <None Include="app.json">
       <Filter>Source Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="include\mqcppsdk\MoeQ.lib">
+      <Filter>Header Files</Filter>
+    </Library>
   </ItemGroup>
 </Project>

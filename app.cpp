@@ -1,6 +1,6 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "pch.h"
-#include "include\mqcppsdk\MoeQ.h"
+#include "include\mqcppsdk\mqcppsdk.h"
 
 MoeQ MQ;
 
@@ -10,7 +10,7 @@ MoeQ MQ;
 /// </summary>
 /// <param name="AuthCode">AuthCode 授权码</param>
 /// <returns>Sdk version Sdk版本</returns>
-extern "C" __declspec(dllexport) int Initialize(uint64_t AuthCode)
+extern "C" __declspec(dllexport) int __stdcall Initialize(const uint64_t AuthCode)
 {
 	//Please don't write any code in zhe function
 	//请勿在此函数写任何代码
@@ -23,7 +23,7 @@ extern "C" __declspec(dllexport) int Initialize(uint64_t AuthCode)
 /// MoeQ插件生命周期事件(事件ID 0,100-103)
 /// </summary>
 /// <param name="LifeCycleEventType">Life cycle event type 生命周期事件类型</param>
-extern "C" __declspec(dllexport) void MQ_LifeCycleEvent(Event::LifeCycleEvent::LifeCycleEventType::_LifeCycleEventType LifeCycleEventType)
+extern "C" __declspec(dllexport) void __stdcall MQ_LifeCycleEvent(const Event::LifeCycleEvent::LifeCycleEventType LifeCycleEventType)
 {
 	switch (LifeCycleEventType)
 	{
@@ -65,9 +65,9 @@ extern "C" __declspec(dllexport) void MQ_LifeCycleEvent(Event::LifeCycleEvent::L
 /// <param name="Msg">Received Message 收到消息</param>
 /// <param name="MsgID">Message ID 消息ID</param>
 /// <returns>Block or Ignore 阻塞或忽略</returns>
-extern "C" __declspec(dllexport) Event::ReturnType::_ReturnType MQ_MessageEvent(Target::Target Target, Message::Msg Msg, uint MsgID)
+extern "C" __declspec(dllexport) Event::ReturnType __stdcall MQ_MessageEvent(const Target::Target* Target, const Message::Msg* Msg, const uint MsgID)
 {
-	switch (Target.TargetType)
+	switch (Target->TargetType)
 	{
 	case Target::TargetType::_private:
 		//Private message(EventID 1000)
@@ -79,7 +79,7 @@ extern "C" __declspec(dllexport) Event::ReturnType::_ReturnType MQ_MessageEvent(
 
 		//Write your process code here
 		//在此写你的处理代码
-
+		MQ.AddLog(Log::LogType::INFORMATION, Log::MsgType::OTHER, L"MQ_MessageEvent", L"GroupMsg");
 
 		//if you don't want this message to be processed by other plugins
 		//如果你不想让此消息被其他插件处理
@@ -101,9 +101,9 @@ extern "C" __declspec(dllexport) Event::ReturnType::_ReturnType MQ_MessageEvent(
 /// </summary>
 /// <param name="NoticeEvent">Notice event information 提醒事件信息</param>
 /// <returns>Block or Ignore 阻塞或忽略</returns>
-extern "C" __declspec(dllexport) Event::ReturnType::_ReturnType MQ_NoticeEvent(Event::NoticeEvent::NoticeEvent NoticeEvent)
+extern "C" __declspec(dllexport) Event::ReturnType __stdcall MQ_NoticeEvent(const Event::NoticeEvent::NoticeEvent* NoticeEvent)
 {
-	switch (NoticeEvent.NoticeEventType)
+	switch (NoticeEvent->NoticeEventType)
 	{
 	case Event::NoticeEvent::NoticeEventType::group_fileupload:
 		//Group file upload(EventID 1003)
@@ -135,9 +135,9 @@ extern "C" __declspec(dllexport) Event::ReturnType::_ReturnType MQ_NoticeEvent(E
 /// </summary>
 /// <param name="RequestEvent">Request event information 请求事件信息</param>
 /// <returns>Agree,Disagree or Ignore 同意,不同意或忽略</returns>
-extern "C" __declspec(dllexport) Event::RequestEvent::ReturnType::_ReturnType MQ_RequestEvent(Event::RequestEvent::RequestEvent RequestEvent, uint responseFlag)
+extern "C" __declspec(dllexport) Event::RequestEvent::ReturnType __stdcall MQ_RequestEvent(const Event::RequestEvent::RequestEvent* RequestEvent, const uint responseFlag)
 {
-	switch (RequestEvent.RequestEventType)
+	switch (RequestEvent->RequestEventType)
 	{
 	case Event::RequestEvent::RequestEventType::add_friend:
 		//Add friend(EventID 1008)
@@ -156,7 +156,7 @@ extern "C" __declspec(dllexport) Event::RequestEvent::ReturnType::_ReturnType MQ
 /// 用户打开菜单
 /// </summary>
 /// <param name="ID">Menu ID 菜单ID</param>
-extern "C" __declspec(dllexport) void Menu(uint ID)
+extern "C" __declspec(dllexport) void __stdcall Menu(const uint ID)
 {
 	switch (ID)
 	{

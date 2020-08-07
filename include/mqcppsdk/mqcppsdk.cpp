@@ -1,4 +1,4 @@
-#include "MoeQ.h"
+#include "mqcppsdk.h"
 
 void MoeQ::SetAuthCode(uint64_t _AuthCode)
 {
@@ -48,4 +48,9 @@ std::vector<MoeQ::GroupInfo>* MoeQ::GetGroupList()
 		(*GroupList)[i].SelfIdentity = UnPack.GetByte();
 	}
 	return GroupList;
+}
+
+void MoeQ::AddLog(const Log::LogType LogType, const Log::MsgType MsgType, const wchar_t* Type, const wchar_t* Msg)
+{
+	addLog(AuthCode, LogType, MsgType, Type, Msg);
 }
