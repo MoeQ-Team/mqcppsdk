@@ -26,9 +26,13 @@ namespace Log {
 // Follow is MoeQ dll call defined
 #define FUNC(ReturnType, FuncName, ...) extern "C" __declspec(dllexport) ReturnType __stdcall FuncName(__VA_ARGS__);
 // Get QQ Information
+FUNC(LPBYTE, getCookies, uint64_t auth_code, const char* Host)
 FUNC(LPBYTE, getFriendList, uint64_t auth_code)
 FUNC(LPBYTE, getGroupList, uint64_t auth_code)
 FUNC(LPBYTE, getGroupMemberList, uint64_t auth_code, int32_t group_id)
+// Friend action
+FUNC(LPBYTE, sendLike, uint64_t auth_code, const uint QQ, const int Times)
+// Other
 FUNC(void, addLog, const uint64_t auth_code, const Log::LogType, const Log::MsgType, const wchar_t* Type, const wchar_t* Msg)
 
 //#pragma comment(lib, "MoeQ.lib")
@@ -60,14 +64,15 @@ public:
 	/// 取好友列表(Auth 262144)
 	/// </summary>
 	/// <returns>记得delete</returns>
-	std::vector<MoeQ::FriendInfo>* GetFriendList();
+	const std::vector<MoeQ::FriendInfo>* GetFriendList();
 
 	/// <summary>
 	/// 取群列表(Auth 524288)
 	/// </summary>
 	/// <returns>记得delete</returns>
-	std::vector<MoeQ::GroupInfo>* GetGroupList();
+	const std::vector<MoeQ::GroupInfo>* GetGroupList();
+
+	bool SendLike(const uint QQ, const int Times);
 
 	void AddLog(const Log::LogType LogType, const Log::MsgType MsgType, const wchar_t* Type, const wchar_t* Msg);
 };
-

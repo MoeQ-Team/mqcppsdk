@@ -5,9 +5,10 @@ void MoeQ::SetAuthCode(uint64_t _AuthCode)
 	AuthCode = _AuthCode;
 }
 
-std::vector<MoeQ::FriendInfo>* MoeQ::GetFriendList()
+const std::vector<MoeQ::FriendInfo>* MoeQ::GetFriendList()
 {
-	UnPack UnPack(getFriendList(AuthCode));
+	LPBYTE bin = getFriendList(AuthCode);
+	UnPack UnPack(bin);
 	uint length = UnPack.GetInt();
 	std::vector<MoeQ::FriendInfo>* FriendList = new std::vector<MoeQ::FriendInfo>;
 	FriendList->resize(length);
@@ -26,12 +27,14 @@ std::vector<MoeQ::FriendInfo>* MoeQ::GetFriendList()
 		(*FriendList)[i].Remark = (char*)UnPack.GetInt();
 #endif
 	}
+	delete[] bin;
 	return FriendList;
 }
 
-std::vector<MoeQ::GroupInfo>* MoeQ::GetGroupList()
+const std::vector<MoeQ::GroupInfo>* MoeQ::GetGroupList()
 {
-	UnPack UnPack(getGroupList(AuthCode));
+	LPBYTE bin = getGroupList(AuthCode);
+	UnPack UnPack(bin);
 	uint length = UnPack.GetInt();
 	std::vector<MoeQ::GroupInfo>* GroupList = new std::vector<MoeQ::GroupInfo>;
 	GroupList->resize(length);
@@ -47,10 +50,16 @@ std::vector<MoeQ::GroupInfo>* MoeQ::GetGroupList()
 		(*GroupList)[i].MemberCount = UnPack.GetShort();
 		(*GroupList)[i].SelfIdentity = UnPack.GetByte();
 	}
+	delete[] bin;
 	return GroupList;
 }
 
 void MoeQ::AddLog(const Log::LogType LogType, const Log::MsgType MsgType, const wchar_t* Type, const wchar_t* Msg)
 {
 	addLog(AuthCode, LogType, MsgType, Type, Msg);
+}
+
+bool MoeQ::SendLike(const uint QQ, const int Times)
+{
+	return sendLike(AuthCode, QQ, Times);
 }

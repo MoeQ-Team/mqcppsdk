@@ -79,7 +79,7 @@ extern "C" __declspec(dllexport) Event::ReturnType __stdcall MQ_MessageEvent(con
 
 		//Write your process code here
 		//在此写你的处理代码
-		MQ.AddLog(Log::LogType::INFORMATION, Log::MsgType::OTHER, L"MQ_MessageEvent", L"GroupMsg");
+		MQ.SendLike(((Target::group*)Target->Sender)->FromQQ, 1);
 
 		//if you don't want this message to be processed by other plugins
 		//如果你不想让此消息被其他插件处理
