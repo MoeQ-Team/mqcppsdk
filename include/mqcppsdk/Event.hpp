@@ -8,9 +8,9 @@ namespace Message
 		expression = 6,
 		picture = 8,
 		xml = 12,
+		reply = 45,
+		json = 51,
 		red_packet = 56,
-		reply = 93,
-		json = 115,
 	};
 
 	struct Msg
@@ -20,9 +20,10 @@ namespace Message
 		void* Message;
 	};
 
-	struct test
+	struct text
 	{
 		char* text = nullptr;
+		uint AtQQ; //if text == nullptr,this is a at,0=AtAll
 	};
 	struct classcal_face
 	{
@@ -44,7 +45,12 @@ namespace Message
 	struct xml
 	{
 		char* text = nullptr;
-		char* discribe = nullptr;
+		char* description = nullptr;
+	};
+	struct json
+	{
+		char* text = nullptr;
+		char* description = nullptr;
 	};
 	struct reply
 	{
@@ -53,52 +59,7 @@ namespace Message
 		uint Time;
 		Message::Msg* Msg = nullptr;
 	};
-	/*
-	void DestoryMsg(Message::Msg* Msg)
-	{
-		Message::Msg* ThisMsg = Msg;
-		while (ThisMsg != nullptr)
-		{
-			switch (ThisMsg->MsgType)
-			{
-			case Message::MsgType::text:
-				delete[]((Message::test*)ThisMsg->Message)->text;
-				break;
-			case Message::MsgType::classcal_face:
-				break;
-			case Message::MsgType::expression:
-				delete[]((Message::expression*)ThisMsg->Message)->MD5;
-				break;
-			case Message::MsgType::picture:
-				delete[]((Message::picture*)ThisMsg->Message)->MD5;
-				delete[]((Message::picture*)ThisMsg->Message)->URL;
-				break;
-			case Message::MsgType::xml:
-				delete[]((Message::xml*)ThisMsg->Message)->text;
-				if (((Message::xml*)ThisMsg->Message)->discribe != nullptr) delete[]((Message::xml*)ThisMsg->Message)->discribe;
-				break;
-			case Message::MsgType::reply:
-			{
-				Message::Msg* ReplyMsg = ((Message::reply*)ThisMsg->Message)->Msg;
-				while (ReplyMsg != nullptr)
-				{
-					if (((Message::test*)ReplyMsg->Message)->text != nullptr) delete[]((Message::test*)ReplyMsg->Message)->text;
-					delete ThisMsg->Message;
-					Message::Msg* tmp = ThisMsg->NextPoint;
-					delete ThisMsg;
-					ThisMsg = tmp;
-				}
-			}
-			break;
-			default:
-				break;
-			}
-			delete ThisMsg->Message;
-			Message::Msg* tmp = ThisMsg->NextPoint;
-			delete ThisMsg;
-			ThisMsg = tmp;
-		};
-	}*/
+	//void DestoryMsg(Message::Msg* Msg);
 };
 
 namespace Target

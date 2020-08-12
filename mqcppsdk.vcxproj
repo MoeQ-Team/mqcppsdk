@@ -149,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.json" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="include\mqcppsdk\MoeQ.lib" />

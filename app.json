@@ -96,26 +96,25 @@ MoeQ 的Json文件支持单行注释和多行注释
     ]
   },
   "auth": [ // 插件权限(发布前请删除无用权限)
-    //1, //[敏感]取Cookies   getCookies / getCsrfToken
+    //1, //[敏感]取Cookies   getCookies/getCsrfToken
     //2, //[敏感]发送赞      sendLike
     //3, //[敏感]置群退出    setGroupLeave
     //4, //[敏感]置讨论组退出 setDiscussLeave
-    //5, //接收语音          getRecord
-    6, //发送私聊消息       sendPrivateMsg
-    7, //发送群消息         sendGroupMsg
-    8, //发送讨论组消息     sendDiscussMsg
-    9, //撤回消息           deleteMsg
+    5, //发送私聊消息       sendPrivateMsg
+    6, //发送群消息         sendGroupMsg
+    7, //发送讨论组消息     sendDiscussMsg
+    8, //撤回消息           drawGroupMsg/drawPrivateMsg
+    9, //置群禁言           setGroupBan
     10, //移除群员           setGroupKick
     11, //置群管理员         setGroupAdmin
-    12, //置群禁言           setGroupWholeBan
-    13, //置群成员名片       setGroupCard
+    12, //置群成员头衔       setGroupMemberTitle
+    13, //置群成员名片       setGroupMemberCard
     14, //取群成员信息       getGroupMemberInfo
     15, //取陌生人信息       getStrangerInfo
     16, //取群信息           getGroupInfo
-    17, //置好友添加请求     setFriendAddRequest
-    18, //置群添加请求       setGroupAddRequest
-    19, //取好友列表         getFriendList
-    20, //取群列表           getGroupList
-    21 //取群成员列表         getGroupMemberList
+    17, //取好友列表         getFriendList
+    18, //取群列表           getGroupList
+    19, //取群成员列表         getGroupMemberList
+    20 //取群成员列表         getGroupAdminList
   ]
 }
