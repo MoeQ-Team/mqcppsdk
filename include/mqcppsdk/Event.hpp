@@ -22,7 +22,7 @@ namespace Message
 
 	struct text
 	{
-		char* text = nullptr;
+		char* text;
 		uint AtQQ; //if text == nullptr,this is a at,0=AtAll
 	};
 	struct classcal_face

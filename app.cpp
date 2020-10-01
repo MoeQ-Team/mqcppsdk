@@ -173,10 +173,7 @@ extern "C" __declspec(dllexport) void __stdcall Menu(const uint ID)
 	}
 }
 
-BOOL APIENTRY DllMain(HMODULE hModule,
-	DWORD  ul_reason_for_call,
-	LPVOID lpReserved
-)
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
 {
 	//Please don't write any code in zhe function
 	//请勿在此函数写任何代码

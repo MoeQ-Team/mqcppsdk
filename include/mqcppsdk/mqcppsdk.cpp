@@ -6,20 +6,89 @@ void MoeQ::SetAuthCode(uint64_t _AuthCode)
 }
 
 
+char* MoeQ::GetCookies(const char* Host)
+{
+	return getCookies(AuthCode, Host);
+}
 
 bool MoeQ::SendLike(const uint QQ, const int Times)
 {
 	return sendLike(AuthCode, QQ, Times);
 }
 
-char* MoeQ::GetCookies(const char* Host)
+bool MoeQ::LeaveGroup(const uint Group)
 {
-	return getCookies(AuthCode, Host);
+	return setGroupLeave(AuthCode, Group);
+}
+
+bool MoeQ::LeaveDiscuss(const uint Disscuss)
+{
+	return setDiscussLeave(AuthCode, Disscuss);
+}
+
+bool MoeQ::SendPrivateMsg(const uint QQ, const Message::Msg* Msg)
+{
+	return sendPrivateMsg(AuthCode, QQ, Msg);
 }
 
 bool MoeQ::SendGroupMsg(const uint Group, const Message::Msg* Msg)
 {
 	return sendGroupMsg(AuthCode, Group, Msg);
+}
+
+bool MoeQ::SendDiscussMsg(const uint Disscuss, const Message::Msg* Msg)
+{
+	return sendDisscussMsg(AuthCode, Disscuss, Msg);
+}
+
+bool MoeQ::DrawGroupMsg(const uint Group, const uint MsgID)
+{
+	return drawGroupMsg(AuthCode, Group, MsgID);
+}
+
+bool MoeQ::DrawPrivateMsg(const uint QQ, const uint MsgID)
+{
+	return drawPrivateMsg(AuthCode, QQ, MsgID);
+}
+
+bool MoeQ::SetGroupBan(const uint Group, const uint QQ, const uint Time)
+{
+	return setGroupBan(AuthCode, Group, QQ, Time);
+}
+
+bool MoeQ::SetGroupKick(const uint Group, const uint QQ, const bool Forever)
+{
+	return setGroupKick(AuthCode, Group, QQ, Forever);
+}
+
+bool MoeQ::SetGroupAdmin(const uint Group, const uint QQ, const bool Set)
+{
+	return setGroupAdmin(AuthCode, Group, QQ, Set);
+}
+
+bool MoeQ::SetGroupMemberTitle(const uint Group, const uint QQ, const char* Title)
+{
+	return setGroupMemberTitle(AuthCode, Group, QQ, Title);
+}
+
+bool MoeQ::SetGroupMemberCard(const uint Group, const uint QQ, const char* Card)
+{
+	return setGroupMemberCard(AuthCode, Group, QQ, Card);
+}
+
+void MoeQ::GetGroupMemberInfo(const uint Group, const uint QQ)
+{
+	return getGroupMemberInfo(AuthCode, Group, QQ);
+}
+
+void MoeQ::GetStrangerInfo(const uint QQ)
+{
+	return getStrangerInfo(AuthCode, QQ);
+}
+
+void MoeQ::GetGroupInfo(const uint Group)
+{
+	return getGroupInfo(AuthCode, Group);
 }
 
 std::vector<MoeQ::FriendInfo>* MoeQ::GetFriendList()
@@ -100,6 +169,7 @@ std::vector<uint>* MoeQ::GetGroupAdminList(const uint group_code)
 	delete[] bin;
 	return GroupAdminList;
 }
+
 
 void MoeQ::AddLog(const Log::LogType LogType, const Log::MsgType MsgType, const wchar_t* Type, const wchar_t* Msg)
 {
