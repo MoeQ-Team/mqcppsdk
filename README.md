@@ -1,27 +1,11 @@
 # MoeQ C++ SDK
 
-MoeQ C++ SDK(»ò³Æ mqcppsdk,MQCPPSDK)
+MoeQ C++ SDK(mqcppsdk)
 
-## ¼«¼òÊ¾Àı
+## Use Way
 
-```cpp
-#include <cqcppsdk/mqcppsdk.h>
+## Feedback
 
-extern "C" __declspec(dllexport) Event::ReturnType __stdcall MQ_MessageEvent(const Target::Target* Target, const Message::Msg* Msg, const uint MsgID)
-{
-	switch (Target->TargetType)
-	{
-	case Target::TargetType::group:
-		if (!MQ.SendGroupMsg(((Target::group*)Target->Sender)->FromGroup, Msg)) MQ.AddLog(Log::LogType::WARNING,Log::MsgType::PROGRAM,L"ÈºÁÄ", L"¸´¶ÁÊ§°Ü");
-		break;
-	}
-	return Event::ReturnType::ignore;
-}
+å¦‚æœä½¿ç”¨è¿‡ç¨‹ä¸­é‡åˆ°ä»»ä½•é—®é¢˜,Bug,æˆ–æœ‰å…¶å®ƒæ„è§æˆ–å»ºè®®,æ¬¢è¿æ [issue](https://github.com/YuFanXing/mqcppsdk/issues/new).
 
-```
-
-## ÎÊÌâ·´À¡
-
-Èç¹ûÊ¹ÓÃ¹ı³ÌÖĞÓöµ½ÈÎºÎÎÊÌâ,Bug,»òÓĞÆäËüÒâ¼û»ò½¨Òé,»¶Ó­Ìá [issue](https://github.com/YuFanXing/mqcppsdk/issues/new).
-
-»¶Ó­¼ÓÈëQQ½»Á÷Èº 940674752 
+æ¬¢è¿åŠ å…¥QQäº¤æµç¾¤ 940674752 
