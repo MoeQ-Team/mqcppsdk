@@ -17,10 +17,7 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\mqcppsdk\Event.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\mqcppsdk\mqcppsdk.h">
+    <ClInclude Include="include\mqcppsdk\mqcppsdk.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -29,15 +26,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="app.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="include\mqcppsdk\Pack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="include\mqcppsdk\Utils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="include\mqcppsdk\mqcppsdk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
