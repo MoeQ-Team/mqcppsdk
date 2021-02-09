@@ -1,6 +1,8 @@
 #pragma once
 #include "Pack.hpp"
 
+#pragma comment(lib, "mqcppsdk\\MoeQ.lib")
+
 #define MOEQ_SDK_VERSION 1
 
 namespace Log {
@@ -31,50 +33,67 @@ namespace Message
 		expression = 6,
 		picture = 8,
 		xml = 12,
+		red_packet = 24,
 		reply = 45,
 		json = 51,
-		red_packet = 56,
+	};
+
+	struct Data
+	{
+		uint Length = NULL;
+		byte* Contain = nullptr;
+		char8_t* URL = nullptr;
+		char* Location = nullptr;
 	};
 
 	struct Msg
 	{
 		MsgType MsgType;
 		Msg* NextPoint = nullptr;
-		void* Message;
+		void* Message = nullptr;
 	};
 
 	struct text
 	{
-		char* text;
+		char8_t* text;
 		uint AtQQ; //if text == nullptr,this is a at,0=AtAll
 	};
+
 	struct classcal_face
 	{
 		uint id = NULL;
 	};
+
 	struct expression
 	{
 		uint id = NULL;
 		byte* MD5 = nullptr;
 	};
+
 	struct picture
 	{
 		uint Width = NULL;
 		uint Height = NULL;
-		uint Length = NULL;
 		byte* MD5 = nullptr;
-		char* URL = nullptr;
+		Data Data;
 	};
+
+	struct voice
+	{
+		byte* MD5 = nullptr;
+		Data Data;
+	};
+
 	struct xml
 	{
-		char* text = nullptr;
-		char* description = nullptr;
+		char8_t* text = nullptr;
 	};
+
 	struct json
 	{
-		char* text = nullptr;
-		char* description = nullptr;
+		char8_t* text = nullptr;
 	};
+
 	struct reply
 	{
 		uint MsgId;
@@ -82,8 +101,7 @@ namespace Message
 		uint Time;
 		Message::Msg* Msg = nullptr;
 	};
-	//void DestoryMsg(Message::Msg* Msg);
-};
+}
 
 namespace Target
 {
@@ -230,6 +248,7 @@ namespace Event
 
 // Follow is MoeQ dll call defined
 #define FUNC(ReturnType, FuncName, ...) extern "C" __declspec(dllexport) ReturnType __stdcall FuncName(__VA_ARGS__);
+
 // QQ Information
 FUNC(char*, getCookies, const uint64_t AuthCode, const char* Host)
 
@@ -262,7 +281,7 @@ FUNC(bool, drawGroupMsg, const uint64_t AuthCode, const uint Group, const uint64
 // Other
 FUNC(void, addLog, const uint64_t AuthCode, const Log::LogType LogType, const Log::MsgType MsgType, const wchar_t* Type, const wchar_t* Msg)
 
-//#pragma comment(lib, "MoeQ.lib")
+#undef FUNC
 
 class MoeQ
 {
