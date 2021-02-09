@@ -46,18 +46,18 @@ namespace XBin
 namespace Iconv
 {
 	/// <summary>
-	/// Utf8×Ö·û´®×ªWindows Unicode
+	/// Utf8ï¿½Ö·ï¿½ï¿½ï¿½×ªWindows Unicode
 	/// </summary>
-	/// <param name="szU8">Utf8×Ö·û´®</param>
-	/// <returns>º¯ÊýÄÚÊ¹ÓÃÁËnew,¼ÇµÃÓÃdeleteÊÍ·Å</returns>
+	/// <param name="szU8">Utf8ï¿½Ö·ï¿½ï¿½ï¿½</param>
+	/// <returns>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½new,ï¿½Çµï¿½ï¿½ï¿½deleteï¿½Í·ï¿½</returns>
 	wchar_t* Utf82Unicode(char* szU8)
 	{
 		int wcsLen = ::MultiByteToWideChar(CP_UTF8, NULL, szU8, strlen(szU8), NULL, 0);
-		//·ÖÅä¿Õ¼äÒª¸ø'\0'Áô¸ö¿Õ¼ä£¬MultiByteToWideChar²»»á¸ø'\0'¿Õ¼ä
+		//ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½Òªï¿½ï¿½'\0'ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼ä£¬MultiByteToWideCharï¿½ï¿½ï¿½ï¿½ï¿½'\0'ï¿½Õ¼ï¿½
 		wchar_t* wszString = new wchar_t[wcsLen + 1];
-		//×ª»»
+		//×ªï¿½ï¿½
 		::MultiByteToWideChar(CP_UTF8, NULL, szU8, strlen(szU8), wszString, wcsLen);
-		//×îºó¼ÓÉÏ'\0'
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'\0'
 		wszString[wcsLen] = '\0';
 		return wszString;
 	}

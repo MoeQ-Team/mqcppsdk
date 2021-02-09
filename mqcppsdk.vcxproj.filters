@@ -35,9 +35,4 @@
     </None>
     <None Include="README.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Library Include="include\mqcppsdk\MoeQ.lib">
-      <Filter>Header Files</Filter>
-    </Library>
-  </ItemGroup>
 </Project>

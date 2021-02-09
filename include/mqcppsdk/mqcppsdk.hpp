@@ -257,8 +257,8 @@ FUNC(bool, sendPrivateMsg, const uint64_t AuthCode, const uint QQ, const Message
 FUNC(bool, sendGroupMsg, const uint64_t AuthCode, const uint Group, const Message::Msg* Msg)
 FUNC(bool, sendDisscussMsg, const uint64_t AuthCode, const uint Disscuss, const Message::Msg* Msg)
 
-FUNC(bool, drawPrivateMsg, const uint64_t AuthCode, const uint QQ, const uint MsgID)
-FUNC(bool, drawGroupMsg, const uint64_t AuthCode, const uint Group, const uint MsgID)
+FUNC(bool, drawPrivateMsg, const uint64_t AuthCode, const uint QQ, const uint64_t MsgID)
+FUNC(bool, drawGroupMsg, const uint64_t AuthCode, const uint Group, const uint64_t MsgID)
 // Other
 FUNC(void, addLog, const uint64_t AuthCode, const Log::LogType LogType, const Log::MsgType MsgType, const wchar_t* Type, const wchar_t* Msg)
 

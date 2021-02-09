@@ -65,7 +65,7 @@ extern "C" __declspec(dllexport) void __stdcall MQ_LifeCycleEvent(const Event::L
 /// <param name="Msg">Received Message 收到消息</param>
 /// <param name="MsgID">Message ID 消息ID</param>
 /// <returns>Block or Ignore 阻塞或忽略</returns>
-extern "C" __declspec(dllexport) Event::ReturnType __stdcall MQ_MessageEvent(const Target::Target* Target, const Message::Msg* Msg, const uint MsgID)
+extern "C" __declspec(dllexport) Event::ReturnType __stdcall MQ_MessageEvent(const Target::Target* Target, const Message::Msg* Msg, const uint64_t MsgID)
 {
 	switch (Target->TargetType)
 	{

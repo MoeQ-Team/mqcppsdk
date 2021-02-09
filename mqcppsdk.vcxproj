@@ -147,9 +147,6 @@
     <None Include="app.json" />
     <None Include="README.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Library Include="include\mqcppsdk\MoeQ.lib" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
