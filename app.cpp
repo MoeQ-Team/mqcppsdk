@@ -71,20 +71,20 @@ extern "C" __declspec(dllexport) Event::ReturnType __stdcall MQ_MessageEvent(con
 	case Target::TargetType::_private:
 		//Private message(EventID 1000)
 		//私聊消息(事件ID 1000)
-		break;
-	case Target::TargetType::group:
-		//Group message(EventID 1001)
-		//群聊消息(事件ID 1001)
 
 		//Write your process code here
 		//在此写你的处理代码
-		MQ.SendLike(((Target::group*)Target->Sender)->FromQQ, 1);
+		//MQ.SendLike(((Target::_private*)Target->Sender)->FromQQ, 1);
 
 		//if you don't want this message to be processed by other plugins
 		//如果你不想让此消息被其他插件处理
 		//You can uncomment the following code
 		//你可以取消下面这句代码的注释
 		//return Event::ReturnType::block;
+		break;
+	case Target::TargetType::group:
+		//Group message(EventID 1001)
+		//群聊消息(事件ID 1001)
 		break;
 	case Target::TargetType::discuss:
 		//Discuss message(EventID 1002)
