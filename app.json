@@ -1,11 +1,11 @@
 /* 
 MoeQ 的Json文件支持单行注释和多行注释
 请将插件的 app.dll 和 app.json 文件放在 dev/[appid]/ 目录下
-如 appid=com.moeq.demo, 则dll及json文件需分别放到 dev/com.example.demo/app.dll,dev/com.example.demo/app.json
+如 appid=com.moeq.demo, 则dll及json文件需分别放到 dev/com.moeq.demo/app.dll,dev/com.moeq.demo/app.json
 */
 {
   "name": "MoeQ Example Plugin", // 插件名称
-  "appid":"top.simplxs.example", //插件appid
+  "appid":"com.moeq.demo", //插件appid
   "version": "1.0.0", // 插件版本
   "author": "Simplxs", // 插件作者
   "description": "This is a plugin example", // 插件描述

@@ -1,14 +1,15 @@
 #include "../../include/mqcppsdk/mqcppsdk.h"
 
-#if defined(_WIN_PLATFORM_)
 // Follow is MoeQ dll call defined
-#define FUNC(ReturnType, FuncName, ...) extern "C" __declspec(dllexport) ReturnType __stdcall FuncName(__VA_ARGS__);
+
+#if defined(_WIN_PLATFORM_)
+#define FUNC(ReturnType, FuncName, ...) extern "C" __declspec(dllimport) ReturnType __stdcall FuncName(__VA_ARGS__);
 #endif
 
-
-#if defined(LINUX_PLATFORM)
-
+#if defined(_LINUX_PLATFORM_)
+#define FUNC(ReturnType, FuncName, ...) extern "C" ReturnType FuncName(__VA_ARGS__);
 #endif
+
 // QQ Information
 FUNC(char *, getCookies, const uint64_t AuthCode, const char *Host)
 

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0.0)
 
-project(mqcppsdk)
+project(app)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -10,6 +10,7 @@ endif()
 
 if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
     add_definitions(-D _LINUX_PLATFORM_)
+    set(CMAKE_CXX_FLAGS "-fvisibility=hidden ${CMAKE_CXX_FLAGS}")
 endif()
 
 if ("${DCMAKE_BUILD_TYPE}" STREQUAL "Debug")
@@ -22,6 +23,6 @@ endif()
 
 add_definitions(-D X64)
 
-file(GLOB_RECURSE _MQCPPSDK_SOURCE_FILES "src/core/*.cpp" "src/utils/*.cpp")
+file(GLOB_RECURSE _APP_SOURCE_FILES "src/core/*.cpp" "src/utils/*.cpp")
 
-add_library(mqcppsdk ${_MQCPPSDK_SOURCE_FILES})
+add_library(app SHARED ${_APP_SOURCE_FILES})

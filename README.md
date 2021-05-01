@@ -7,7 +7,15 @@ MoeQ C++ SDK(mqcppsdk)
 ```cpp
 #include <cqcppsdk/mqcppsdk.h>
 
-extern "C" __declspec(dllexport) Event::ReturnType __stdcall MQ_MessageEvent(const Target::Target* Target, const Message::Msg* Msg, const uint MsgID)
+#if defined(_WIN_PLATFORM_)
+#define FUNC(ReturnType, FuncName, ...) extern "C" __declspec(dllexport) ReturnType __stdcall FuncName(__VA_ARGS__)
+#endif
+
+#if defined(_LINUX_PLATFORM_)
+#define FUNC(ReturnType, FuncName, ...) extern "C" __attribute__((visibility("default"))) ReturnType FuncName(__VA_ARGS__)
+#endif
+
+FUNC(Event::ReturnType, MQ_MessageEvent, const Target::Target *Target, const Message::Msg *Msg, const uint64_t MsgID)
 {
 	switch (Target->TargetType)
 	{

@@ -1,94 +1,101 @@
-// dllmain.cpp : Defines the entry point for the DLL application.
-#include <mqcppsdk\mqcppsdk.hpp>
+#include "include/mqcppsdk/mqcppsdk.h"
+
+#if defined(_WIN_PLATFORM_)
+#define FUNC(ReturnType, FuncName, ...) extern "C" __declspec(dllexport) ReturnType __stdcall FuncName(__VA_ARGS__)
+#endif
+
+#if defined(_LINUX_PLATFORM_)
+#define FUNC(ReturnType, FuncName, ...) extern "C" __attribute__((visibility("default"))) ReturnType FuncName(__VA_ARGS__)
+#endif
 
 MoeQ MQ;
 
 /// <summary>
 /// MoeQ plugin init
-/// MoeQ²å¼ş³õÊ¼»¯
+/// MoeQæ’ä»¶åˆå§‹åŒ–
 /// </summary>
-/// <param name="AuthCode">AuthCode ÊÚÈ¨Âë</param>
-/// <returns>Sdk version Sdk°æ±¾</returns>
-extern "C" __declspec(dllexport) int __stdcall Initialize(const uint64_t AuthCode)
+/// <param name="AuthCode">AuthCode æˆæƒç </param>
+/// <returns>Sdk version Sdkç‰ˆæœ¬</returns>
+FUNC(int, Initialize, const uint64_t AuthCode)
 {
 	//Please don't write any code in zhe function
-	//ÇëÎğÔÚ´Ëº¯ÊıĞ´ÈÎºÎ´úÂë
+	//è¯·å‹¿åœ¨æ­¤å‡½æ•°å†™ä»»ä½•ä»£ç 
 	MQ.SetAuthCode(AuthCode);
 	return MOEQ_SDK_VERSION;
 }
 
 /// <summary>
 /// MoeQ plugin life cycle event(EventID 0,100-103)
-/// MoeQ²å¼şÉúÃüÖÜÆÚÊÂ¼ş(ÊÂ¼şID 0,100-103)
+/// MoeQæ’ä»¶ç”Ÿå‘½å‘¨æœŸäº‹ä»¶(äº‹ä»¶ID 0,100-103)
 /// </summary>
-/// <param name="LifeCycleEventType">Life cycle event type ÉúÃüÖÜÆÚÊÂ¼şÀàĞÍ</param>
-extern "C" __declspec(dllexport) void __stdcall MQ_LifeCycleEvent(const Event::LifeCycleEvent::LifeCycleEventType LifeCycleEventType)
+/// <param name="LifeCycleEventType">Life cycle event type ç”Ÿå‘½å‘¨æœŸäº‹ä»¶ç±»å‹</param>
+FUNC(void, MQ_LifeCycleEvent, const Event::LifeCycleEvent::LifeCycleEventType LifeCycleEventType)
 {
 	switch (LifeCycleEventType)
 	{
 	case Event::LifeCycleEvent::LifeCycleEventType::StartUp:
 		// MoeQ starts up(EventID 100)
-		// MoeQÆô¶¯(ÊÂ¼şID 100)
+		// MoeQå¯åŠ¨(äº‹ä»¶ID 100)
 
 		//Write your init code here
-		//ÔÚ´Ë±àĞ´ÄúµÄ³õÊ¼»¯´úÂë
+		//åœ¨æ­¤ç¼–å†™æ‚¨çš„åˆå§‹åŒ–ä»£ç 
 
 		break;
 	case Event::LifeCycleEvent::LifeCycleEventType::ShutDown:
 		// MoeQ shuts down(EventID 101)
-		// MoeQ¹Ø±Õ(ÊÂ¼şID 101)
+		// MoeQå…³é—­(äº‹ä»¶ID 101)
 
 		break;
 	case Event::LifeCycleEvent::LifeCycleEventType::PluginEnabled:
 		// Plugin was Enabled(EventID 102)
-		// ²å¼şÒÑÆôÓÃ(ÊÂ¼şID 102)
+		// æ’ä»¶å·²å¯ç”¨(äº‹ä»¶ID 102)
 		// Note:It can be call when MoeQ starts up
-		// ÌáÊ¾:ËüÓĞ¿ÉÄÜ»áÔÚMoeQQÆô¶¯Ê±±»µ÷ÓÃ
-	
+		// æç¤º:å®ƒæœ‰å¯èƒ½ä¼šåœ¨MoeQQå¯åŠ¨æ—¶è¢«è°ƒç”¨
+
 		break;
 	case Event::LifeCycleEvent::LifeCycleEventType::PluginDisabled:
 		// Plugin was disabled(EventID 103)
-		// ²å¼ş½«±»½ûÓÃ(ÊÂ¼şID 103)
+		// æ’ä»¶å°†è¢«ç¦ç”¨(äº‹ä»¶ID 103)
 		// Note:It won't be call when MoeQ shuts down
-		// ÌáÊ¾:Ëü²»»áÔÚMoeQ¹Ø±ÕÊ±±»µ÷ÓÃ
-		
+		// æç¤º:å®ƒä¸ä¼šåœ¨MoeQå…³é—­æ—¶è¢«è°ƒç”¨
+
 		break;
 	}
 }
 
 /// <summary>
 /// MoeQ message event(EventID 1,1000-1002)
-/// MoeQÏûÏ¢ÊÂ¼ş(ÊÂ¼şID 1,1000-1002)
+/// MoeQæ¶ˆæ¯äº‹ä»¶(äº‹ä»¶ID 1,1000-1002)
 /// </summary>
-/// <param name="Target">Sender Information ·¢ËÍÕßĞÅÏ¢</param>
-/// <param name="Msg">Received Message ÊÕµ½ÏûÏ¢</param>
-/// <param name="MsgID">Message ID ÏûÏ¢ID</param>
-/// <returns>Block or Ignore ×èÈû»òºöÂÔ</returns>
-extern "C" __declspec(dllexport) Event::ReturnType __stdcall MQ_MessageEvent(const Target::Target* Target, const Message::Msg* Msg, const uint64_t MsgID)
+/// <param name="Target">Sender Information å‘é€è€…ä¿¡æ¯</param>
+/// <param name="Msg">Received Message æ”¶åˆ°æ¶ˆæ¯</param>
+/// <param name="MsgID">Message ID æ¶ˆæ¯ID</param>
+/// <returns>Block or Ignore é˜»å¡æˆ–å¿½ç•¥</returns>
+FUNC(Event::ReturnType, MQ_MessageEvent, const Target::Target *Target, const Message::Msg *Msg, const uint64_t MsgID)
 {
 	switch (Target->TargetType)
 	{
 	case Target::TargetType::_private:
 		//Private message(EventID 1000)
-		//Ë½ÁÄÏûÏ¢(ÊÂ¼şID 1000)
+		//ç§èŠæ¶ˆæ¯(äº‹ä»¶ID 1000)
 
 		//Write your process code here
-		//ÔÚ´ËĞ´ÄãµÄ´¦Àí´úÂë
+		//åœ¨æ­¤å†™ä½ çš„å¤„ç†ä»£ç 
 		//MQ.SendLike(((Target::_private*)Target->Sender)->FromQQ, 1);
 
 		//if you don't want this message to be processed by other plugins
-		//Èç¹ûÄã²»ÏëÈÃ´ËÏûÏ¢±»ÆäËû²å¼ş´¦Àí
+		//å¦‚æœä½ ä¸æƒ³è®©æ­¤æ¶ˆæ¯è¢«å…¶ä»–æ’ä»¶å¤„ç†
 		//You can uncomment the following code
-		//Äã¿ÉÒÔÈ¡ÏûÏÂÃæÕâ¾ä´úÂëµÄ×¢ÊÍ
+		//ä½ å¯ä»¥å–æ¶ˆä¸‹é¢è¿™å¥ä»£ç çš„æ³¨é‡Š
 		//return Event::ReturnType::block;
 		break;
 	case Target::TargetType::group:
 		//Group message(EventID 1001)
-		//ÈºÁÄÏûÏ¢(ÊÂ¼şID 1001)
+		//ç¾¤èŠæ¶ˆæ¯(äº‹ä»¶ID 1001)
 		break;
 	case Target::TargetType::discuss:
 		//Discuss message(EventID 1002)
-		//ÌÖÂÛ×éÏûÏ¢(ÊÂ¼şID 1002)
+		//è®¨è®ºç»„æ¶ˆæ¯(äº‹ä»¶ID 1002)
 		break;
 	}
 	return Event::ReturnType::ignore;
@@ -96,33 +103,33 @@ extern "C" __declspec(dllexport) Event::ReturnType __stdcall MQ_MessageEvent(con
 
 /// <summary>
 /// MoeQ notice event(EventID 2,1003-1007)
-/// MoeQÌáĞÑÊÂ¼ş(ÊÂ¼şID 2,1003-1007)
+/// MoeQæé†’äº‹ä»¶(äº‹ä»¶ID 2,1003-1007)
 /// </summary>
-/// <param name="NoticeEvent">Notice event information ÌáĞÑÊÂ¼şĞÅÏ¢</param>
-/// <returns>Block or Ignore ×èÈû»òºöÂÔ</returns>
-extern "C" __declspec(dllexport) Event::ReturnType __stdcall MQ_NoticeEvent(const Event::NoticeEvent::NoticeEvent* NoticeEvent)
+/// <param name="NoticeEvent">Notice event information æé†’äº‹ä»¶ä¿¡æ¯</param>
+/// <returns>Block or Ignore é˜»å¡æˆ–å¿½ç•¥</returns>
+FUNC(Event::ReturnType, MQ_NoticeEvent, const Event::NoticeEvent::NoticeEvent *NoticeEvent)
 {
 	switch (NoticeEvent->NoticeEventType)
 	{
 	case Event::NoticeEvent::NoticeEventType::group_fileupload:
 		//Group file upload(EventID 1003)
-		//ÈºÎÄ¼şÉÏ´«(ÊÂ¼şID 1003)
+		//ç¾¤æ–‡ä»¶ä¸Šä¼ (äº‹ä»¶ID 1003)
 		break;
 	case Event::NoticeEvent::NoticeEventType::group_adminchange:
 		//Group administrator changes(EventID 1004)
-		//Èº¹ÜÀíÔ±±ä¶¯(ÊÂ¼şID 1004)
+		//ç¾¤ç®¡ç†å‘˜å˜åŠ¨(äº‹ä»¶ID 1004)
 		break;
 	case Event::NoticeEvent::NoticeEventType::group_memberchange:
 		//The change in the number of group members(EventID 1005)
-		//Èº³ÉÔ±ÊıÁ¿±ä¶¯(ÊÂ¼şID 1005)
+		//ç¾¤æˆå‘˜æ•°é‡å˜åŠ¨(äº‹ä»¶ID 1005)
 		break;
 	case Event::NoticeEvent::NoticeEventType::group_mute:
 		//Group ban(EventID 1006)
-		//Èº½ûÑÔ(ÊÂ¼şID 1006)
+		//ç¾¤ç¦è¨€(äº‹ä»¶ID 1006)
 		break;
 	case Event::NoticeEvent::NoticeEventType::friend_added:
 		//Friend add(EventID 1007)
-		//ºÃÓÑÒÑÌí¼Ó(ÊÂ¼şID 1007)
+		//å¥½å‹å·²æ·»åŠ (äº‹ä»¶ID 1007)
 		break;
 	}
 	return Event::ReturnType::ignore;
@@ -130,21 +137,21 @@ extern "C" __declspec(dllexport) Event::ReturnType __stdcall MQ_NoticeEvent(cons
 
 /// <summary>
 /// MoeQ notice event(EventID 3,1008-1009)
-/// MoeQÇëÇóÊÂ¼ş(ÊÂ¼şID 3,1008-1009)
+/// MoeQè¯·æ±‚äº‹ä»¶(äº‹ä»¶ID 3,1008-1009)
 /// </summary>
-/// <param name="RequestEvent">Request event information ÇëÇóÊÂ¼şĞÅÏ¢</param>
-/// <returns>Agree,Disagree or Ignore Í¬Òâ,²»Í¬Òâ»òºöÂÔ</returns>
-extern "C" __declspec(dllexport) Event::RequestEvent::ReturnType __stdcall MQ_RequestEvent(const Event::RequestEvent::RequestEvent* RequestEvent, const uint responseFlag)
+/// <param name="RequestEvent">Request event information è¯·æ±‚äº‹ä»¶ä¿¡æ¯</param>
+/// <returns>Agree,Disagree or Ignore åŒæ„,ä¸åŒæ„æˆ–å¿½ç•¥</returns>
+FUNC(Event::RequestEvent::ReturnType, MQ_RequestEvent, const Event::RequestEvent::RequestEvent *RequestEvent, const uint responseFlag)
 {
 	switch (RequestEvent->RequestEventType)
 	{
 	case Event::RequestEvent::RequestEventType::add_friend:
 		//Add friend(EventID 1008)
-		//¼ÓºÃÓÑ(ÊÂ¼şID 1008)
+		//åŠ å¥½å‹(äº‹ä»¶ID 1008)
 		break;
 	case Event::RequestEvent::RequestEventType::add_group:
 		//Add group(EventID 1009)
-		//¼ÓÈº(ÊÂ¼şID 1009)
+		//åŠ ç¾¤(äº‹ä»¶ID 1009)
 		break;
 	}
 	return Event::RequestEvent::ReturnType::ignore;
@@ -152,31 +159,33 @@ extern "C" __declspec(dllexport) Event::RequestEvent::ReturnType __stdcall MQ_Re
 
 /// <summary>
 /// User open menu
-/// ÓÃ»§´ò¿ª²Ëµ¥
+/// ç”¨æˆ·æ‰“å¼€èœå•
 /// </summary>
-/// <param name="ID">Menu ID ²Ëµ¥ID</param>
-extern "C" __declspec(dllexport) void __stdcall Menu(const uint ID)
+/// <param name="ID">Menu ID èœå•ID</param>
+FUNC(void, Menu, const uint ID)
 {
 	switch (ID)
 	{
 	case 0:
 		//Menu1
-		//²Ëµ¥1
+		//èœå•1
 
 		break;
 	case 1:
 		//Menu2
-		//²Ëµ¥2
+		//èœå•2
 
 		break;
 	}
 }
 
-BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
+#if defined(_WIN_PLATFORM_)
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
 	//Please don't write any code in zhe function
-	//ÇëÎğÔÚ´Ëº¯ÊıĞ´ÈÎºÎ´úÂë
+	//è¯·å‹¿åœ¨æ­¤å‡½æ•°å†™ä»»ä½•ä»£ç 
 	//Write your init code in the function MQ_LifeCycleEvent
-	//ÔÚº¯ÊıMQ_LifeCycleEventÖĞ±àĞ´ÄúµÄ³õÊ¼»¯´úÂë
+	//åœ¨å‡½æ•°MQ_LifeCycleEventä¸­ç¼–å†™æ‚¨çš„åˆå§‹åŒ–ä»£ç 
 	return TRUE;
 }
+#endif
