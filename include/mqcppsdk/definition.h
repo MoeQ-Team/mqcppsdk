@@ -1,8 +1,10 @@
 #pragma once
+
+#include <stdint.h>
+
 #define MOEQ_SDK_VERSION 1
 
 typedef unsigned char byte;
-typedef unsigned int uint;
 typedef unsigned char *LPBYTE;
 
 namespace Log
@@ -29,22 +31,22 @@ namespace Information
 {
 	struct FriendInfo
 	{
-		uint QQ;
+		uint32_t QQ;
 		char *Nick;
 		int status;
 		char *Remark;
 	};
 	struct GroupInfo
 	{
-		uint GroupCode;
+		uint32_t GroupCode;
 		char *GroupName;
-		uint MasterQQ;
+		uint32_t MasterQQ;
 		short MemberCount;
 		byte SelfIdentity;
 	};
 	struct GroupMemberInfo
 	{
-		uint QQ;
+		uint32_t QQ;
 		char *Nick;
 	};
 }
@@ -65,7 +67,7 @@ namespace Message
 
 	struct Data
 	{
-		uint Length = 0;
+		uint32_t Length = 0;
 		byte *Contain = nullptr;
 		char8_t *URL = nullptr;
 		char *Location = nullptr;
@@ -81,24 +83,24 @@ namespace Message
 	struct text
 	{
 		char8_t *text;
-		uint AtQQ; //if text == nullptr,this is a at,0=AtAll
+		uint32_t AtQQ; //if text == nullptr,this is a at,0=AtAll
 	};
 
 	struct classcal_face
 	{
-		uint id = 0;
+		uint32_t id = 0;
 	};
 
 	struct expression
 	{
-		uint id = 0;
+		uint32_t id = 0;
 		byte *MD5 = nullptr;
 	};
 
 	struct picture
 	{
-		uint Width = 0;
-		uint Height = 0;
+		uint32_t Width = 0;
+		uint32_t Height = 0;
 		byte *MD5 = nullptr;
 		::Message::Data Data;
 	};
@@ -121,9 +123,9 @@ namespace Message
 
 	struct reply
 	{
-		uint MsgId;
-		uint QQ;
-		uint Time;
+		uint32_t MsgId;
+		uint32_t QQ;
+		uint32_t Time;
 		Message::Msg *Msg = nullptr;
 	};
 }
@@ -139,26 +141,26 @@ namespace Target
 
 	struct Target
 	{
-		::Target::TargetType TargetType;
-		void *Sender;
+		const ::Target::TargetType TargetType;
+		const void *Sender;
 	};
 
 	struct _private
 	{
-		uint FromQQ;
+		const uint32_t FromQQ;
 		// 0 FromFriend 1 From Online State 2 From Group 3 From Discuss
 		// 0 来自好友 1 来自在线状态 2 来自群 3来自讨论组
-		uint FromType;
+		const uint32_t FromType;
 	};
 	struct group
 	{
-		uint FromGroup;
-		uint FromQQ;
+		const uint32_t FromGroup;
+		const uint32_t FromQQ;
 	};
 	struct discuss
 	{
-		uint FromDiscuss;
-		uint FromQQ;
+		const uint32_t FromDiscuss;
+		const uint32_t FromQQ;
 	};
 }
 
@@ -207,33 +209,33 @@ namespace Event
 
 		struct group_fileupload
 		{
-			uint FromGroup;
-			uint FromQQ;
+			uint32_t FromGroup;
+			uint32_t FromQQ;
 			FileInfo File;
 		};
 		struct group_adminchange
 		{
-			uint FromGroup;
-			uint FromQQ;
-			uint Type; // 0 Set up administrator 被设置管理员 1 Cancelled administrator 被取消管理员
+			uint32_t FromGroup;
+			uint32_t FromQQ;
+			uint32_t Type; // 0 Set up administrator 被设置管理员 1 Cancelled administrator 被取消管理员
 		};
 		struct group_memberchange
 		{
-			uint FromGroup;
-			uint FromQQ;
-			uint OperateQQ;
-			uint Type; // 0 Increase 增加 1 Decrease(Don't include kicked) 减少(不包括被踢) 2 Kicked 被踢
+			uint32_t FromGroup;
+			uint32_t FromQQ;
+			uint32_t OperateQQ;
+			uint32_t Type; // 0 Increase 增加 1 Decrease(Don't include kicked) 减少(不包括被踢) 2 Kicked 被踢
 		};
 		struct group_mute
 		{
-			uint FromGroup;
-			uint FromQQ;
-			uint OperateQQ;
-			uint Type; // 0 Ban 被禁言 1 Free 被解禁
+			uint32_t FromGroup;
+			uint32_t FromQQ;
+			uint32_t OperateQQ;
+			uint32_t Type; // 0 Ban 被禁言 1 Free 被解禁
 		};
 		struct friend_added
 		{
-			uint FromQQ;
+			uint32_t FromQQ;
 		};
 	}
 
@@ -260,15 +262,15 @@ namespace Event
 
 		struct add_friend
 		{
-			uint FromQQ;
+			uint32_t FromQQ;
 			char *msg;
 		};
 		struct add_group
 		{
-			uint FromGroup;
-			uint FromQQ;
+			uint32_t FromGroup;
+			uint32_t FromQQ;
 			char *msg;
-			uint Type; // 0 Others apply to join the group 他人申请入群 1 Myself was invited to join the group 自己受邀入群
+			uint32_t Type; // 0 Others apply to join the group 他人申请入群 1 Myself was invited to join the group 自己受邀入群
 		};
 	}
 }

@@ -24,21 +24,21 @@ public:
     /// <param name="QQ"></param>
     /// <param name="Times"></param>
     /// <returns></returns>
-    bool SendLike(const uint QQ, const int Times);
+    bool SendLike(const uint32_t QQ, const int Times);
 
     /// <summary>
     /// 退出群(Auth 3)
     /// </summary>
     /// <param name="Group"></param>
     /// <returns></returns>
-    bool LeaveGroup(const uint Group);
+    bool LeaveGroup(const uint32_t Group);
 
     /// <summary>
     /// 退出讨论组(Auth 4)
     /// </summary>
     /// <param name="Disscuss"></param>
     /// <returns></returns>
-    bool LeaveDiscuss(const uint Disscuss);
+    bool LeaveDiscuss(const uint32_t Disscuss);
 
     /// <summary>
     /// 发送私聊消息(Auth 5)
@@ -46,7 +46,7 @@ public:
     /// <param name="QQ"></param>
     /// <param name="Msg"></param>
     /// <returns></returns>
-    bool SendPrivateMsg(const uint QQ, const Message::Msg *Msg);
+    bool SendPrivateMsg(const uint32_t QQ, const Message::Msg *Msg);
 
     /// <summary>
     /// 发送群消息(Auth 6)
@@ -54,7 +54,7 @@ public:
     /// <param name="Group"></param>
     /// <param name="Msg"></param>
     /// <returns></returns>
-    bool SendGroupMsg(const uint Group, const Message::Msg *Msg);
+    bool SendGroupMsg(const uint32_t Group, const Message::Msg *Msg);
 
     /// <summary>
     /// 发送讨论组消息(Auth 7)
@@ -62,7 +62,7 @@ public:
     /// <param name="Disscuss"></param>
     /// <param name="Msg"></param>
     /// <returns></returns>
-    bool SendDiscussMsg(const uint Disscuss, const Message::Msg *Msg);
+    bool SendDiscussMsg(const uint32_t Disscuss, const Message::Msg *Msg);
 
     /// <summary>
     /// 撤回群聊消息(Auth 8)
@@ -70,7 +70,7 @@ public:
     /// <param name="Group"></param>
     /// <param name="Msg"></param>
     /// <returns></returns>
-    bool DrawGroupMsg(const uint Group, const uint MsgID);
+    bool DrawGroupMsg(const uint32_t Group, const uint32_t MsgID);
 
     /// <summary>
     /// 撤回私聊消息(Auth 8)
@@ -78,7 +78,7 @@ public:
     /// <param name="QQ"></param>
     /// <param name="Msg"></param>
     /// <returns></returns>
-    bool DrawPrivateMsg(const uint QQ, const uint MsgID);
+    bool DrawPrivateMsg(const uint32_t QQ, const uint32_t MsgID);
 
     /// <summary>
     /// 置群禁言(Auth 9)
@@ -87,7 +87,7 @@ public:
     /// <param name="QQ"></param>
     /// <param name="Time"></param>
     /// <returns></returns>
-    bool SetGroupBan(const uint Group, const uint QQ, const uint Time);
+    bool SetGroupBan(const uint32_t Group, const uint32_t QQ, const uint32_t Time);
 
     /// <summary>
     /// 移除群员(Auth 10)
@@ -96,7 +96,7 @@ public:
     /// <param name="QQ"></param>
     /// <param name="Forever"></param>
     /// <returns></returns>
-    bool SetGroupKick(const uint Group, const uint QQ, const bool Forever);
+    bool SetGroupKick(const uint32_t Group, const uint32_t QQ, const bool Forever);
 
     /// <summary>
     /// 置群管理员(Auth 11)
@@ -105,7 +105,7 @@ public:
     /// <param name="QQ"></param>
     /// <param name="Set"></param>
     /// <returns></returns>
-    bool SetGroupAdmin(const uint Group, const uint QQ, const bool Set);
+    bool SetGroupAdmin(const uint32_t Group, const uint32_t QQ, const bool Set);
 
     /// <summary>
     /// 置群成员头衔(Auth 12)
@@ -114,7 +114,7 @@ public:
     /// <param name="QQ"></param>
     /// <param name="Title"></param>
     /// <returns></returns>
-    bool SetGroupMemberTitle(const uint Group, const uint QQ, const char *Title);
+    bool SetGroupMemberTitle(const uint32_t Group, const uint32_t QQ, const char *Title);
 
     /// <summary>
     /// 置群成员名片(Auth 13)
@@ -123,7 +123,7 @@ public:
     /// <param name="QQ"></param>
     /// <param name="Card"></param>
     /// <returns></returns>
-    bool SetGroupMemberCard(const uint Group, const uint QQ, const char *Card);
+    bool SetGroupMemberCard(const uint32_t Group, const uint32_t QQ, const char *Card);
 
     /// <summary>
     /// 取群成员信息(Auth 14)
@@ -131,21 +131,21 @@ public:
     /// <param name="Group"></param>
     /// <param name="QQ"></param>
     /// <returns></returns>
-    void GetGroupMemberInfo(const uint Group, const uint QQ);
+    void GetGroupMemberInfo(const uint32_t Group, const uint32_t QQ);
 
     /// <summary>
     /// 取陌生人信息(Auth 15)
     /// </summary>
     /// <param name="QQ"></param>
     /// <returns></returns>
-    void GetStrangerInfo(const uint QQ);
+    void GetStrangerInfo(const uint32_t QQ);
 
     /// <summary>
     /// 取群信息(Auth 16)
     /// </summary>
     /// <param name="Group"></param>
     /// <returns></returns>
-    void GetGroupInfo(const uint Group);
+    void GetGroupInfo(const uint32_t Group);
 
     /// <summary>
     /// 取好友列表(Auth 17)
@@ -164,14 +164,14 @@ public:
     /// </summary>
     /// <param name="group_code"></param>
     /// <returns>记得销毁</returns>
-    std::vector<Information::GroupMemberInfo> *GetGroupMemberList(const uint group_code);
+    std::vector<Information::GroupMemberInfo> *GetGroupMemberList(const uint32_t group_code);
 
     /// <summary>
     /// 取群管理员列表(Auth 20)
     /// </summary>
     /// <param name="group_code"></param>
     /// <returns>记得销毁</returns>
-    std::vector<uint> *GetGroupAdminList(const uint group_code);
+    std::vector<uint32_t> *GetGroupAdminList(const uint32_t group_code);
 
     /// <summary>
     /// 取群管理员列表(Auth 20)

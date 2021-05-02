@@ -18,7 +18,7 @@ MoeQ MQ;
 /// <returns>Sdk version Sdk版本</returns>
 FUNC(int, Initialize, const uint64_t AuthCode)
 {
-	//Please don't write any code in zhe function
+	//Please don't write any code in the function
 	//请勿在此函数写任何代码
 	MQ.SetAuthCode(AuthCode);
 	return MOEQ_SDK_VERSION;
@@ -78,20 +78,23 @@ FUNC(Event::ReturnType, MQ_MessageEvent, const Target::Target *Target, const Mes
 	case Target::TargetType::_private:
 		//Private message(EventID 1000)
 		//私聊消息(事件ID 1000)
+		break;
+	case Target::TargetType::group:
+		//Group message(EventID 1001)
+		//群聊消息(事件ID 1001)
 
 		//Write your process code here
 		//在此写你的处理代码
-		//MQ.SendLike(((Target::_private*)Target->Sender)->FromQQ, 1);
+
+		MQ.SendLike(((Target::group *)Target->Sender)->FromQQ, 1);
 
 		//if you don't want this message to be processed by other plugins
 		//如果你不想让此消息被其他插件处理
 		//You can uncomment the following code
 		//你可以取消下面这句代码的注释
+
 		//return Event::ReturnType::block;
-		break;
-	case Target::TargetType::group:
-		//Group message(EventID 1001)
-		//群聊消息(事件ID 1001)
+
 		break;
 	case Target::TargetType::discuss:
 		//Discuss message(EventID 1002)
@@ -141,7 +144,7 @@ FUNC(Event::ReturnType, MQ_NoticeEvent, const Event::NoticeEvent::NoticeEvent *N
 /// </summary>
 /// <param name="RequestEvent">Request event information 请求事件信息</param>
 /// <returns>Agree,Disagree or Ignore 同意,不同意或忽略</returns>
-FUNC(Event::RequestEvent::ReturnType, MQ_RequestEvent, const Event::RequestEvent::RequestEvent *RequestEvent, const uint responseFlag)
+FUNC(Event::RequestEvent::ReturnType, MQ_RequestEvent, const Event::RequestEvent::RequestEvent *RequestEvent, const uint32_t responseFlag)
 {
 	switch (RequestEvent->RequestEventType)
 	{
@@ -162,7 +165,7 @@ FUNC(Event::RequestEvent::ReturnType, MQ_RequestEvent, const Event::RequestEvent
 /// 用户打开菜单
 /// </summary>
 /// <param name="ID">Menu ID 菜单ID</param>
-FUNC(void, Menu, const uint ID)
+FUNC(void, Menu, const uint32_t ID)
 {
 	switch (ID)
 	{
@@ -176,8 +179,11 @@ FUNC(void, Menu, const uint ID)
 		//菜单2
 
 		break;
+		//...
 	}
 }
+
+#undef FUNC
 
 #if defined(_WIN_PLATFORM_)
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)

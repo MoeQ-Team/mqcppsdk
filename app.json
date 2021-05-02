@@ -93,6 +93,7 @@ MoeQ 的Json文件支持单行注释和多行注释
         "SettingA", //菜单名称(id从0递增)
         "SettingB", 
         "SettingC"
+        //...
     ]
   },
   "auth": [ // 插件权限(发布前请删除无用权限)

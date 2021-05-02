@@ -25,4 +25,8 @@ add_definitions(-D X64)
 
 file(GLOB_RECURSE _APP_SOURCE_FILES "src/core/*.cpp" "src/utils/*.cpp")
 
-add_library(app SHARED ${_APP_SOURCE_FILES})
+add_library(app SHARED ${_APP_SOURCE_FILES} "app.cpp")
+
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+    target_compile_options(cqcppsdk INTERFACE $<$<CXX_COMPILER_ID:MSVC>:/utf-8>)
+endif()
