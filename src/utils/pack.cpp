@@ -6,7 +6,7 @@ ByteInputStream::ByteInputStream(const byte *buffer)
 	Offset = 0;
 }
 
-bool ByteInputStream::Check(const uint len, const uint i)
+bool ByteInputStream::Check(const uint32_t len, const uint32_t i)
 {
 	return len >= Offset + i;
 }
@@ -17,7 +17,7 @@ void ByteInputStream::Set(const byte *buffer)
 	Offset = 0;
 }
 
-void ByteInputStream::Skip(uint i)
+void ByteInputStream::Skip(uint32_t i)
 {
 	Offset += i;
 }
@@ -72,9 +72,9 @@ double ByteInputStream::GetDouble()
 	return 0.0;
 }
 
-const byte *ByteInputStream::GetBin(const uint len)
+const byte *ByteInputStream::GetBin(const uint32_t len)
 {
-	uint tmp = Offset;
+	uint32_t tmp = Offset;
 	ByteInputStream::Skip(len);
 	return Buffer + tmp;
 }
@@ -84,12 +84,12 @@ const byte *ByteInputStream::GetCurrentPoint()
 	return Buffer + Offset;
 }
 
-uint ByteInputStream::GetReadedLength()
+uint32_t ByteInputStream::GetReadedLength()
 {
 	return Offset;
 }
 
-void UnPack::Reset(const byte *buffer, const uint bufferlen)
+void UnPack::Reset(const byte *buffer, const uint32_t bufferlen)
 {
 	ByteInputStream::Set(buffer);
 	BufferLen = bufferlen;
@@ -151,14 +151,14 @@ double UnPack::GetDouble()
 	return 0;
 }
 
-const char *UnPack::GetStr(const uint len)
+const char *UnPack::GetStr(const uint32_t len)
 {
 	if (Check(BufferLen, len))
 		return (const char *)ByteInputStream::GetBin(len);
 	return 0;
 }
 
-const byte *UnPack::GetBin(const uint len)
+const byte *UnPack::GetBin(const uint32_t len)
 {
 	if (Check(BufferLen, len))
 		return ByteInputStream::GetBin(len);
@@ -167,13 +167,13 @@ const byte *UnPack::GetBin(const uint len)
 
 const LPBYTE UnPack::GetBin()
 {
-	uint len = UnPack::GetInt() - 4;
+	uint32_t len = UnPack::GetInt() - 4;
 	if (Check(BufferLen, len))
 		return (const LPBYTE)(ByteInputStream::GetBin(len) - 4);
 	return 0;
 }
 
-uint UnPack::GetLeftLength()
+uint32_t UnPack::GetLeftLength()
 {
 	return BufferLen - ByteInputStream::GetReadedLength();
 }

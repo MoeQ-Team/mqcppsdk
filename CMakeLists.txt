@@ -25,4 +25,4 @@ add_definitions(-D X64)
 
 file(GLOB_RECURSE _APP_SOURCE_FILES "src/core/*.cpp" "src/utils/*.cpp")
 
-add_library(app SHARED ${_APP_SOURCE_FILES})
+add_library(app SHARED ${_APP_SOURCE_FILES} "app.cpp")

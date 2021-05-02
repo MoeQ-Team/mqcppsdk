@@ -8,30 +8,30 @@ class ByteInputStream
 {
 private:
 	const byte* Buffer;
-	uint Offset;
+	uint32_t Offset;
 public:
 	ByteInputStream(const byte* buffer);
 public:
-	bool Check(const uint len, const uint i);
+	bool Check(const uint32_t len, const uint32_t i);
 	void Set(const byte* buffer);
-	void Skip(const uint i);
+	void Skip(const uint32_t i);
 	uint8_t GetByte();
 	uint16_t GetShort();
 	uint32_t GetInt();
 	uint64_t GetLong();
 	float GetFloat();
 	double GetDouble();
-	const byte* GetBin(const uint len);
+	const byte* GetBin(const uint32_t len);
 	const byte* GetCurrentPoint();
-	uint GetReadedLength();
+	uint32_t GetReadedLength();
 };
 
 class UnPack :public ByteInputStream
 {
 private:
-	uint BufferLen;
+	uint32_t BufferLen;
 public:
-	UnPack(const byte* buffer, const uint bufferlen) :ByteInputStream(buffer)
+	UnPack(const byte* buffer, const uint32_t bufferlen) :ByteInputStream(buffer)
 	{
 		BufferLen = bufferlen;
 	};
@@ -41,7 +41,7 @@ public:
 		BufferLen = XBin::Bin2Int(buffer);
 	};
 public:
-	void Reset(const byte* buffer, const uint bufferlen);
+	void Reset(const byte* buffer, const uint32_t bufferlen);
 	void Reset(const LPBYTE buffer);
 	void Reset(const std::vector<byte>* buffer);
 	uint8_t GetByte();
@@ -50,8 +50,8 @@ public:
 	uint64_t GetLong();
 	float GetFloat();
 	double GetDouble();
-	const char* GetStr(const uint len);
-	const byte* GetBin(const uint len);
+	const char* GetStr(const uint32_t len);
+	const byte* GetBin(const uint32_t len);
 	const LPBYTE GetBin();
-	uint GetLeftLength();
+	uint32_t GetLeftLength();
 };
