@@ -18,10 +18,10 @@ MoeQ MQ;
 /// <returns>Sdk version Sdk版本</returns>
 FUNC(int, Initialize, const uint64_t AuthCode)
 {
-	//Please don't write any code in the function
-	//请勿在此函数写任何代码
-	MQ.SetAuthCode(AuthCode);
-	return MOEQ_SDK_VERSION;
+    //Please don't write any code in the function
+    //请勿在此函数写任何代码
+    MQ.SetAuthCode(AuthCode);
+    return MOEQ_SDK_VERSION;
 }
 
 /// <summary>
@@ -31,36 +31,36 @@ FUNC(int, Initialize, const uint64_t AuthCode)
 /// <param name="LifeCycleEventType">Life cycle event type 生命周期事件类型</param>
 FUNC(void, MQ_LifeCycleEvent, const Event::LifeCycleEvent::LifeCycleEventType LifeCycleEventType)
 {
-	switch (LifeCycleEventType)
-	{
-	case Event::LifeCycleEvent::LifeCycleEventType::StartUp:
-		// MoeQ starts up(EventID 100)
-		// MoeQ启动(事件ID 100)
+    switch (LifeCycleEventType)
+    {
+    case Event::LifeCycleEvent::LifeCycleEventType::StartUp:
+        // MoeQ starts up(EventID 100)
+        // MoeQ启动(事件ID 100)
 
-		//Write your init code here
-		//在此编写您的初始化代码
+        //Write your init code here
+        //在此编写您的初始化代码
 
-		break;
-	case Event::LifeCycleEvent::LifeCycleEventType::ShutDown:
-		// MoeQ shuts down(EventID 101)
-		// MoeQ关闭(事件ID 101)
+        break;
+    case Event::LifeCycleEvent::LifeCycleEventType::ShutDown:
+        // MoeQ shuts down(EventID 101)
+        // MoeQ关闭(事件ID 101)
 
-		break;
-	case Event::LifeCycleEvent::LifeCycleEventType::PluginEnabled:
-		// Plugin was Enabled(EventID 102)
-		// 插件已启用(事件ID 102)
-		// Note:It can be call when MoeQ starts up
-		// 提示:它有可能会在MoeQQ启动时被调用
+        break;
+    case Event::LifeCycleEvent::LifeCycleEventType::PluginEnabled:
+        // Plugin was Enabled(EventID 102)
+        // 插件已启用(事件ID 102)
+        // Note:It can be call when MoeQ starts up
+        // 提示:它有可能会在MoeQQ启动时被调用
 
-		break;
-	case Event::LifeCycleEvent::LifeCycleEventType::PluginDisabled:
-		// Plugin was disabled(EventID 103)
-		// 插件将被禁用(事件ID 103)
-		// Note:It won't be call when MoeQ shuts down
-		// 提示:它不会在MoeQ关闭时被调用
+        break;
+    case Event::LifeCycleEvent::LifeCycleEventType::PluginDisabled:
+        // Plugin was disabled(EventID 103)
+        // 插件将被禁用(事件ID 103)
+        // Note:It won't be call when MoeQ shuts down
+        // 提示:它不会在MoeQ关闭时被调用
 
-		break;
-	}
+        break;
+    }
 }
 
 /// <summary>
@@ -73,35 +73,35 @@ FUNC(void, MQ_LifeCycleEvent, const Event::LifeCycleEvent::LifeCycleEventType Li
 /// <returns>Block or Ignore 阻塞或忽略</returns>
 FUNC(Event::ReturnType, MQ_MessageEvent, const Target::Target *Target, const Message::Msg *Msg, const uint64_t MsgID)
 {
-	switch (Target->TargetType)
-	{
-	case Target::TargetType::_private:
-		//Private message(EventID 1000)
-		//私聊消息(事件ID 1000)
-		break;
-	case Target::TargetType::group:
-		//Group message(EventID 1001)
-		//群聊消息(事件ID 1001)
+    switch (Target->TargetType)
+    {
+    case Target::TargetType::_private:
+        //Private message(EventID 1000)
+        //私聊消息(事件ID 1000)
+        break;
+    case Target::TargetType::group:
+        //Group message(EventID 1001)
+        //群聊消息(事件ID 1001)
 
-		//Write your process code here
-		//在此写你的处理代码
+        //Write your process code here
+        //在此写你的处理代码
 
-		MQ.SendLike(((Target::group *)Target->Sender)->FromQQ, 1);
+        //MQ.SendLike(((Target::group *)Target->Sender)->FromQQ, 1);
 
-		//if you don't want this message to be processed by other plugins
-		//如果你不想让此消息被其他插件处理
-		//You can uncomment the following code
-		//你可以取消下面这句代码的注释
+        //if you don't want this message to be processed by other plugins
+        //如果你不想让此消息被其他插件处理
+        //You can uncomment the following code
+        //你可以取消下面这句代码的注释
 
-		//return Event::ReturnType::block;
+        //return Event::ReturnType::block;
 
-		break;
-	case Target::TargetType::discuss:
-		//Discuss message(EventID 1002)
-		//讨论组消息(事件ID 1002)
-		break;
-	}
-	return Event::ReturnType::ignore;
+        break;
+    case Target::TargetType::discuss:
+        //Discuss message(EventID 1002)
+        //讨论组消息(事件ID 1002)
+        break;
+    }
+    return Event::ReturnType::ignore;
 }
 
 /// <summary>
@@ -112,30 +112,30 @@ FUNC(Event::ReturnType, MQ_MessageEvent, const Target::Target *Target, const Mes
 /// <returns>Block or Ignore 阻塞或忽略</returns>
 FUNC(Event::ReturnType, MQ_NoticeEvent, const Event::NoticeEvent::NoticeEvent *NoticeEvent)
 {
-	switch (NoticeEvent->NoticeEventType)
-	{
-	case Event::NoticeEvent::NoticeEventType::group_fileupload:
-		//Group file upload(EventID 1003)
-		//群文件上传(事件ID 1003)
-		break;
-	case Event::NoticeEvent::NoticeEventType::group_adminchange:
-		//Group administrator changes(EventID 1004)
-		//群管理员变动(事件ID 1004)
-		break;
-	case Event::NoticeEvent::NoticeEventType::group_memberchange:
-		//The change in the number of group members(EventID 1005)
-		//群成员数量变动(事件ID 1005)
-		break;
-	case Event::NoticeEvent::NoticeEventType::group_mute:
-		//Group ban(EventID 1006)
-		//群禁言(事件ID 1006)
-		break;
-	case Event::NoticeEvent::NoticeEventType::friend_added:
-		//Friend add(EventID 1007)
-		//好友已添加(事件ID 1007)
-		break;
-	}
-	return Event::ReturnType::ignore;
+    switch (NoticeEvent->NoticeEventType)
+    {
+    case Event::NoticeEvent::NoticeEventType::group_fileupload:
+        //Group file upload(EventID 1003)
+        //群文件上传(事件ID 1003)
+        break;
+    case Event::NoticeEvent::NoticeEventType::group_adminchange:
+        //Group administrator changes(EventID 1004)
+        //群管理员变动(事件ID 1004)
+        break;
+    case Event::NoticeEvent::NoticeEventType::group_memberchange:
+        //The change in the number of group members(EventID 1005)
+        //群成员数量变动(事件ID 1005)
+        break;
+    case Event::NoticeEvent::NoticeEventType::group_mute:
+        //Group ban(EventID 1006)
+        //群禁言(事件ID 1006)
+        break;
+    case Event::NoticeEvent::NoticeEventType::friend_added:
+        //Friend add(EventID 1007)
+        //好友已添加(事件ID 1007)
+        break;
+    }
+    return Event::ReturnType::ignore;
 }
 
 /// <summary>
@@ -146,18 +146,18 @@ FUNC(Event::ReturnType, MQ_NoticeEvent, const Event::NoticeEvent::NoticeEvent *N
 /// <returns>Agree,Disagree or Ignore 同意,不同意或忽略</returns>
 FUNC(Event::RequestEvent::ReturnType, MQ_RequestEvent, const Event::RequestEvent::RequestEvent *RequestEvent, const uint32_t responseFlag)
 {
-	switch (RequestEvent->RequestEventType)
-	{
-	case Event::RequestEvent::RequestEventType::add_friend:
-		//Add friend(EventID 1008)
-		//加好友(事件ID 1008)
-		break;
-	case Event::RequestEvent::RequestEventType::add_group:
-		//Add group(EventID 1009)
-		//加群(事件ID 1009)
-		break;
-	}
-	return Event::RequestEvent::ReturnType::ignore;
+    switch (RequestEvent->RequestEventType)
+    {
+    case Event::RequestEvent::RequestEventType::add_friend:
+        //Add friend(EventID 1008)
+        //加好友(事件ID 1008)
+        break;
+    case Event::RequestEvent::RequestEventType::add_group:
+        //Add group(EventID 1009)
+        //加群(事件ID 1009)
+        break;
+    }
+    return Event::RequestEvent::ReturnType::ignore;
 }
 
 /// <summary>
@@ -167,20 +167,20 @@ FUNC(Event::RequestEvent::ReturnType, MQ_RequestEvent, const Event::RequestEvent
 /// <param name="ID">Menu ID 菜单ID</param>
 FUNC(void, Menu, const uint32_t ID)
 {
-	switch (ID)
-	{
-	case 0:
-		//Menu1
-		//菜单1
+    switch (ID)
+    {
+    case 0:
+        //Menu1
+        //菜单1
 
-		break;
-	case 1:
-		//Menu2
-		//菜单2
+        break;
+    case 1:
+        //Menu2
+        //菜单2
 
-		break;
-		//...
-	}
+        break;
+        //...
+    }
 }
 
 #undef FUNC
@@ -188,10 +188,10 @@ FUNC(void, Menu, const uint32_t ID)
 #if defined(_WIN_PLATFORM_)
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
-	//Please don't write any code in zhe function
-	//请勿在此函数写任何代码
-	//Write your init code in the function MQ_LifeCycleEvent
-	//在函数MQ_LifeCycleEvent中编写您的初始化代码
-	return TRUE;
+    //Please don't write any code in zhe function
+    //请勿在此函数写任何代码
+    //Write your init code in the function MQ_LifeCycleEvent
+    //在函数MQ_LifeCycleEvent中编写您的初始化代码
+    return TRUE;
 }
 #endif
