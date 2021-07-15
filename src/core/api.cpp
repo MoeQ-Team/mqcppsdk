@@ -144,10 +144,8 @@ std::vector<Information::FriendInfo> *MoeQ::GetFriendList()
     {
         (*FriendList)[i].QQ = UnPack.GetInt();
         (*FriendList)[i].Nick = (char *)UnPack.GetLong();
-        (*FriendList)[i].Nick = (char *)UnPack.GetInt();
         (*FriendList)[i].status = UnPack.GetInt();
         (*FriendList)[i].Remark = (char *)UnPack.GetLong();
-        (*FriendList)[i].Remark = (char *)UnPack.GetInt();
     }
     delete[] bin;
     return FriendList;
@@ -164,7 +162,6 @@ std::vector<Information::GroupInfo> *MoeQ::GetGroupList()
     {
         (*GroupList)[i].GroupCode = UnPack.GetInt();
         (*GroupList)[i].GroupName = (char *)UnPack.GetLong();
-        (*GroupList)[i].GroupName = (char *)UnPack.GetInt();
         (*GroupList)[i].MasterQQ = UnPack.GetInt();
         (*GroupList)[i].MemberCount = UnPack.GetShort();
         (*GroupList)[i].SelfIdentity = UnPack.GetByte();
