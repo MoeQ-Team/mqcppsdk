@@ -22,7 +22,7 @@ void MoeQ::Initialize()
 {
 
 #if defined(_WIN_PLATFORM_)
-    HMODULE Handle = LoadLibrary("MoeQ.exe");
+    HMODULE Handle = LoadLibrary(L"MoeQ.exe");
     if (Handle == NULL)
         exit(-1);
 #define FUNC(ReturnType, FuncName, ...) __##FuncName FuncName = (__##FuncName)GetProcAddress(Handle, #FuncName);

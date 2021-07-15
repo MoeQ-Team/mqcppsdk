@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
     add_definitions(-D _WIN_PLATFORM_)
-endif()
+    add_definitions(-D UNICODE)
+    endif()
 
 if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
     add_definitions(-D _LINUX_PLATFORM_)
