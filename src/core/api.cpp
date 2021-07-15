@@ -4,7 +4,7 @@
 
 #if defined(_WIN_PLATFORM_)
 #define FUNC(ReturnType, FuncName, ...)                   \
-    typedef ReturnType(__stdcall *FuncName)(__VA_ARGS__); \
+    typedef ReturnType(__stdcall *__##FuncName)(__VA_ARGS__); \
     __##FuncName FuncName;
 #endif
 
