@@ -1,52 +1,51 @@
 #include "../../include/mqcppsdk/mqcppsdk.h"
 
-// Follow is MoeQ dll call defined
+// Following is functions of MoeQ declared
 
 #if defined(_WIN_PLATFORM_)
-#define FUNC(ReturnType, FuncName, ...) extern "C" __declspec(dllimport) ReturnType __stdcall FuncName(__VA_ARGS__);
+#define FUNC(ReturnType, FuncName, ...)                   \
+    typedef ReturnType(__stdcall *FuncName)(__VA_ARGS__); \
+    __##FuncName FuncName;
 #endif
 
 #if defined(_LINUX_PLATFORM_)
-#define FUNC(ReturnType, FuncName, ...) extern "C" ReturnType FuncName(__VA_ARGS__);
+#define FUNC(ReturnType, FuncName, ...)              \
+    typedef ReturnType (*__##FuncName)(__VA_ARGS__); \
+    __##FuncName FuncName;
 #endif
 
-// QQ Information
-FUNC(char *, getCookies, const uint64_t AuthCode, const char *Host)
-
-FUNC(LPBYTE, getFriendList, const uint64_t AuthCode)
-FUNC(LPBYTE, getGroupList, const uint64_t AuthCode)
-FUNC(LPBYTE, getGroupMemberList, const uint64_t AuthCode,const uint32_t group_code)
-FUNC(LPBYTE, getGroupAdminList, const uint64_t AuthCode,const uint32_t group_code)
-
-FUNC(void, getGroupMemberInfo, const uint64_t AuthCode, const uint32_t Group, const uint32_t QQ)
-FUNC(void, getStrangerInfo, const uint64_t AuthCode, const uint32_t QQ)
-FUNC(void, getGroupInfo, const uint64_t AuthCode, const uint32_t Group)
-// Friend Action
-FUNC(bool, sendLike, const uint64_t AuthCode, const uint32_t QQ, const int Times)
-// Group Action
-FUNC(bool, setGroupBan, const uint64_t AuthCode, const uint32_t Group, const uint32_t QQ, const uint32_t Time)
-FUNC(bool, setGroupKick, const uint64_t AuthCode, const uint32_t Group, const uint32_t QQ, const bool Forever)
-FUNC(bool, setGroupAdmin, const uint64_t AuthCode, const uint32_t Group, const uint32_t QQ, const bool Set)
-FUNC(bool, setGroupMemberTitle, const uint64_t AuthCode, const uint32_t Group, const uint32_t QQ, const char *Title)
-FUNC(bool, setGroupMemberCard, const uint64_t AuthCode, const uint32_t Group, const uint32_t QQ, const char *Card)
-// Chat Action
-FUNC(bool, setGroupLeave, const uint64_t AuthCode, const uint32_t group_code)
-FUNC(bool, setDiscussLeave, const uint64_t AuthCode, const uint32_t group_code)
-
-FUNC(bool, sendPrivateMsg, const uint64_t AuthCode, const uint32_t QQ, const Message::Msg *Msg)
-FUNC(bool, sendGroupMsg, const uint64_t AuthCode, const uint32_t Group, const Message::Msg *Msg)
-FUNC(bool, sendDisscussMsg, const uint64_t AuthCode, const uint32_t Disscuss, const Message::Msg *Msg)
-
-FUNC(bool, drawPrivateMsg, const uint64_t AuthCode, const uint32_t QQ, const uint64_t MsgID)
-FUNC(bool, drawGroupMsg, const uint64_t AuthCode, const uint32_t Group, const uint64_t MsgID)
-// Other
-FUNC(void, addLog, const uint64_t AuthCode, const Log::LogType LogType, const Log::MsgType MsgType, const char8_t *Type, const char8_t *Msg)
+#include "../../include/mqcppsdk/api_func.inc"
 
 #undef FUNC
+
+void MoeQ::Initialize()
+{
+
+#if defined(_WIN_PLATFORM_)
+    HMODULE Handle = LoadLibrary("MoeQ.exe");
+    if (Handle == NULL)
+        exit(-1);
+#define FUNC(ReturnType, FuncName, ...) __##FuncName FuncName = (__##FuncName)GetProcAddress(Handle, #FuncName);
+
+#endif
+#if defined(_LINUX_PLATFORM_)
+    void *Handle = dlopen("MoeQ", RTLD_NOW);
+    if (Handle == NULL)
+        exit(-1);
+#define FUNC(ReturnType, FuncName, ...) __##FuncName FuncName = (__##FuncName)dlsym(Handle, #FuncName);
+#endif
+#include "../../include/mqcppsdk/api_func.inc"
+#undef FUNC
+}
 
 void MoeQ::SetAuthCode(uint64_t _AuthCode)
 {
     AuthCode = _AuthCode;
+}
+
+uint32_t MoeQ::GetUin()
+{
+    return getUin(AuthCode);
 }
 
 char *MoeQ::GetCookies(const char *Host)

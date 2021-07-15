@@ -17,13 +17,13 @@ MoeQ C++ SDK(mqcppsdk)
 
 FUNC(Event::ReturnType, MQ_MessageEvent, const Target::Target *Target, const Message::Msg *Msg, const uint64_t MsgID)
 {
-	switch (Target->TargetType)
-	{
-	case Target::TargetType::group:
-		if (!MQ.SendGroupMsg(((Target::group*)Target->Sender)->FromGroup, Msg)) MQ.AddLog(Log::LogType::WARNING,Log::MsgType::PROGRAM,L"群聊", L"复读失败");
-		break;
-	}
-	return Event::ReturnType::ignore;
+    switch (Target->TargetType)
+    {
+    case Target::TargetType::group:
+        if (!MQ.SendGroupMsg(((Target::group*)Target->Sender)->FromGroup, Msg)) MQ.AddLog(Log::LogType::WARNING,Log::MsgType::PROGRAM,L"群聊", L"复读失败");
+        break;
+    }
+    return Event::ReturnType::ignore;
 }
 
 ```

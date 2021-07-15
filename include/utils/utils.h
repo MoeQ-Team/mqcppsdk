@@ -1,15 +1,13 @@
 #pragma once
 
 #include <vector>
+#include <stdint.h>
 
-#include"../mqcppsdk/definition.h"
-
-typedef unsigned char byte;
-typedef unsigned char* LPBYTE;
+typedef unsigned char *LPBYTE;
 
 namespace XBin
 {
-    byte* Int2Bin(const uint32_t i);
-    void Int2Bin(const uint32_t i, byte* bin);
-    uint32_t Bin2Int(const byte* bin);
+    uint8_t* Int2Bin(const uint32_t i);
+    void Int2Bin(const uint32_t i, uint8_t* bin);
+    uint32_t Bin2Int(const uint8_t* bin);
 }

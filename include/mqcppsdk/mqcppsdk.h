@@ -3,13 +3,23 @@
 #include "definition.h"
 #include "../utils/pack.h"
 
+#include <dlfcn.h>
+
 class MoeQ
 {
 private:
     uint64_t AuthCode;
 
 public:
+    void Initialize();
+
     void SetAuthCode(uint64_t _AuthCode);
+
+    /// <summary>
+    /// 取登录账号的QQ号
+    /// </summary>
+    /// <returns></returns>
+    uint32_t GetUin();
 
     /// <summary>
     /// 取Cookie(skey & Host对应的p_skey)(Auth 1)

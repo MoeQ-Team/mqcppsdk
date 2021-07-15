@@ -20,6 +20,7 @@ FUNC(int, Initialize, const uint64_t AuthCode)
 {
     //Please don't write any code in the function
     //请勿在此函数写任何代码
+    MQ.Initialize();
     MQ.SetAuthCode(AuthCode);
     return MOEQ_SDK_VERSION;
 }
