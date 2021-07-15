@@ -3,7 +3,13 @@
 #include "definition.h"
 #include "../utils/pack.h"
 
+#if defined(_WIN_PLATFORM_)
+#include <Windows.h>
+#endif
+
+#if defined(_LINUX_PLATFORM_)
 #include <dlfcn.h>
+#endif
 
 class MoeQ
 {
