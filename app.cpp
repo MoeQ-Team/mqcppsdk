@@ -185,14 +185,3 @@ FUNC(void, Menu, const uint32_t ID)
 }
 
 #undef FUNC
-
-#if defined(_WIN_PLATFORM_)
-BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
-{
-    //Please don't write any code in zhe function
-    //请勿在此函数写任何代码
-    //Write your init code in the function MQ_LifeCycleEvent
-    //在函数MQ_LifeCycleEvent中编写您的初始化代码
-    return TRUE;
-}
-#endif
