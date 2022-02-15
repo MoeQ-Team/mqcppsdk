@@ -1,32 +1,35 @@
+// Plugin Information
+//FUNC(const char8_t *, getDataPath)
+
 // QQ Information
-FUNC(uint32_t, getUin, const uint64_t)
-FUNC(char *, getCookies, const uint64_t, const char *)
+FUNC(uint32_t, getUin)
+FUNC(char *, getCookies, const char *)
 
-FUNC(LPBYTE, getFriendList, const uint64_t)
-FUNC(LPBYTE, getGroupList, const uint64_t)
-FUNC(LPBYTE, getGroupMemberList, const uint64_t,const uint32_t)
-FUNC(LPBYTE, getGroupAdminList, const uint64_t,const uint32_t)
+FUNC(LPBYTE, getFriendList)
+FUNC(LPBYTE, getGroupList)
+FUNC(LPBYTE, getGroupMemberList, const uint32_t)
+FUNC(LPBYTE, getGroupAdminList, const uint32_t)
 
-FUNC(void, getGroupMemberInfo, const uint64_t, const uint32_t, const uint32_t)
-FUNC(void, getStrangerInfo, const uint64_t, const uint32_t)
-FUNC(void, getGroupInfo, const uint64_t, const uint32_t)
+FUNC(void, getGroupMemberInfo, const uint32_t, const uint32_t)
+FUNC(void, getStrangerInfo, const uint32_t)
+FUNC(void, getGroupInfo, const uint32_t)
 // Friend Action
-FUNC(bool, sendLike, const uint64_t, const uint32_t, const int)
+FUNC(bool, sendLike, const uint32_t, const int)
 // Action
-FUNC(bool, setGroupBan, const uint64_t, const uint32_t, const uint32_t, const uint32_t)
-FUNC(bool, setGroupKick, const uint64_t, const uint32_t, const uint32_t, const bool)
-FUNC(bool, setGroupAdmin, const uint64_t, const uint32_t, const uint32_t, const bool)
-FUNC(bool, setGroupMemberTitle, const uint64_t, const uint32_t, const uint32_t, const char *)
-FUNC(bool, setGroupMemberCard, const uint64_t, const uint32_t, const uint32_t, const char *)
+FUNC(bool, setGroupBan, const uint32_t, const uint32_t, const uint32_t)
+FUNC(bool, setGroupKick, const uint32_t, const uint32_t, const bool)
+FUNC(bool, setGroupAdmin, const uint32_t, const uint32_t, const bool)
+FUNC(bool, setGroupMemberTitle, const uint32_t, const uint32_t, const char *)
+FUNC(bool, setGroupMemberCard, const uint32_t, const uint32_t, const char *)
 // Chat Action
-FUNC(bool, setGroupLeave, const uint64_t, const uint32_t)
-FUNC(bool, setDiscussLeave, const uint64_t, const uint32_t)
+FUNC(bool, setGroupLeave, const uint32_t)
+FUNC(bool, setDiscussLeave, const uint32_t)
 
-FUNC(bool, sendPrivateMsg, const uint64_t, const uint32_t, const Message::Msg *)
-FUNC(bool, sendGroupMsg, const uint64_t, const uint32_t, const Message::Msg *)
-FUNC(bool, sendDisscussMsg, const uint64_t, const uint32_t, const Message::Msg *)
+FUNC(bool, sendPrivateMsg, const uint32_t, const Message::Msg *)
+FUNC(bool, sendGroupMsg, const uint32_t, const Message::Msg *)
+FUNC(bool, sendDisscussMsg, const uint32_t, const Message::Msg *)
 
-FUNC(bool, drawPrivateMsg, const uint64_t, const uint32_t, const uint64_t)
-FUNC(bool, drawGroupMsg, const uint64_t, const uint32_t, const uint64_t)
+FUNC(bool, drawPrivateMsg, const uint32_t, const uint64_t)
+FUNC(bool, drawGroupMsg, const uint32_t, const uint64_t)
 // Other
-FUNC(void, addLog, const uint64_t, const Log::LogType, const Log::MsgType, const char8_t *, const char8_t *)
+FUNC(void, addLog, const Log::LogType, const Log::MsgType, const char8_t *, const char8_t *)

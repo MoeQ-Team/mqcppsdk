@@ -4,6 +4,11 @@ project(app)
 
 set(CMAKE_CXX_STANDARD 20)
 
+if (MSVC)
+    add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
+    add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
+endif()
+
 if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
     add_definitions(-D _WIN_PLATFORM_)
     add_definitions(-D UNICODE)
@@ -27,7 +32,3 @@ add_definitions(-D X64)
 file(GLOB_RECURSE _APP_SOURCE_FILES "src/core/*.cpp" "src/utils/*.cpp")
 
 add_library(app SHARED ${_APP_SOURCE_FILES} "app.cpp")
-
-if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-    target_compile_options(app INTERFACE $<$<CXX_COMPILER_ID:MSVC>:/utf-8>)
-endif()

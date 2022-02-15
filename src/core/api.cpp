@@ -3,14 +3,14 @@
 // Following is functions of MoeQ declared
 
 #if defined(_WIN_PLATFORM_)
-#define FUNC(ReturnType, FuncName, ...)                   \
-    typedef ReturnType(__stdcall *__##FuncName)(__VA_ARGS__); \
+#define FUNC(ReturnType, FuncName, ...)                                         \
+    typedef ReturnType(__stdcall *__##FuncName)(const uint64_t, ##__VA_ARGS__); \
     __##FuncName FuncName;
 #endif
 
 #if defined(_LINUX_PLATFORM_)
-#define FUNC(ReturnType, FuncName, ...)              \
-    typedef ReturnType (*__##FuncName)(__VA_ARGS__); \
+#define FUNC(ReturnType, FuncName, ...)                                \
+    typedef ReturnType (*__##FuncName)(const uint64_t, ##__VA_ARGS__); \
     __##FuncName FuncName;
 #endif
 
@@ -25,16 +25,18 @@ void MoeQ::Initialize()
     HMODULE Handle = LoadLibrary(L"MoeQ.exe");
     if (Handle == NULL)
         exit(-1);
-#define FUNC(ReturnType, FuncName, ...) __##FuncName FuncName = (__##FuncName)GetProcAddress(Handle, #FuncName);
+#define FUNC(ReturnType, FuncName, ...) FuncName = (__##FuncName)GetProcAddress(Handle, #FuncName);
 
 #endif
 #if defined(_LINUX_PLATFORM_)
     void *Handle = dlopen("MoeQ", RTLD_NOW);
     if (Handle == NULL)
         exit(-1);
-#define FUNC(ReturnType, FuncName, ...) __##FuncName FuncName = (__##FuncName)dlsym(Handle, #FuncName);
+#define FUNC(ReturnType, FuncName, ...) FuncName = (__##FuncName)dlsym(Handle, #FuncName);
 #endif
+
 #include "../../include/mqcppsdk/api_func.inc"
+
 #undef FUNC
 }
 
