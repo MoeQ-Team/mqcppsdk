@@ -51,14 +51,14 @@ FUNC(void, MQ_LifeCycleEvent, const Event::LifeCycleEvent::LifeCycleEventType Li
         // Plugin was Enabled(EventID 102)
         // 插件已启用(事件ID 102)
         // Note:It can be call when MoeQ starts up
-        // 提示:它有可能会在MoeQQ启动时被调用
+        // 提示:此函数可在MoeQQ启动时被调用
 
         break;
     case Event::LifeCycleEvent::LifeCycleEventType::PluginDisabled:
         // Plugin was disabled(EventID 103)
         // 插件将被禁用(事件ID 103)
-        // Note:It won't be call when MoeQ shuts down
-        // 提示:它不会在MoeQ关闭时被调用
+        // Note:It can be call when MoeQ shuts down
+        // 提示:此函数可在MoeQQ关闭时被调用
 
         break;
     }

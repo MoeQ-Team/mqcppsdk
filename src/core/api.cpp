@@ -45,6 +45,11 @@ void MoeQ::SetAuthCode(uint64_t _AuthCode)
     AuthCode = _AuthCode;
 }
 
+bool MoeQ::GetDataPath(char8_t *pPath)
+{
+    return getDataPath(AuthCode, pPath);
+};
+
 uint32_t MoeQ::GetUin()
 {
     return getUin(AuthCode);
@@ -163,7 +168,7 @@ std::vector<Information::GroupInfo> *MoeQ::GetGroupList()
     for (size_t i = 0; i < length; i++)
     {
         (*GroupList)[i].GroupCode = UnPack.GetInt();
-        (*GroupList)[i].GroupName = (char *)UnPack.GetLong();
+        (*GroupList)[i].GroupName = (const char8_t *)UnPack.GetStr(UnPack.GetInt());
         (*GroupList)[i].MasterQQ = UnPack.GetInt();
         (*GroupList)[i].MemberCount = UnPack.GetShort();
         (*GroupList)[i].SelfIdentity = UnPack.GetByte();
@@ -201,7 +206,7 @@ std::vector<uint32_t> *MoeQ::GetGroupAdminList(const uint32_t group_code)
     return GroupAdminList;
 }
 
-void MoeQ::AddLog(const Log::LogType LogType, const Log::MsgType MsgType, const char8_t *Type, const char8_t *Msg)
+void MoeQ::AddLog(const Log::LogType LogType, const char8_t *Type, const char8_t *Msg)
 {
-    addLog(AuthCode, LogType, MsgType, Type, Msg);
+    addLog(AuthCode, LogType, Type, Msg);
 }

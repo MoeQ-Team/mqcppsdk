@@ -22,6 +22,12 @@ public:
     void SetAuthCode(uint64_t _AuthCode);
 
     /// <summary>
+    /// 取插件数据路径
+    /// </summary>
+    /// <returns></returns>
+    bool GetDataPath(char8_t* Path);
+
+    /// <summary>
     /// 取登录账号的QQ号
     /// </summary>
     /// <returns></returns>
@@ -194,5 +200,5 @@ public:
     /// </summary>
     /// <param name="group_code"></param>
     /// <returns></returns>
-    void AddLog(const Log::LogType LogType, const Log::MsgType MsgType, const char8_t *Type, const char8_t *Msg);
+    void AddLog(const Log::LogType LogType, const char8_t *Type, const char8_t *Msg);
 };

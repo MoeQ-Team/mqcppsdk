@@ -1,5 +1,5 @@
 // Plugin Information
-//FUNC(const char8_t *, getDataPath)
+FUNC(bool, getDataPath, const char8_t *)
 
 // QQ Information
 FUNC(uint32_t, getUin)
@@ -32,4 +32,4 @@ FUNC(bool, sendDisscussMsg, const uint32_t, const Message::Msg *)
 FUNC(bool, drawPrivateMsg, const uint32_t, const uint64_t)
 FUNC(bool, drawGroupMsg, const uint32_t, const uint64_t)
 // Other
-FUNC(void, addLog, const Log::LogType, const Log::MsgType, const char8_t *, const char8_t *)
+FUNC(void, addLog, const Log::LogType, const char8_t *, const char8_t *)

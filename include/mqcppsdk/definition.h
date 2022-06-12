@@ -18,14 +18,6 @@ namespace Log
         WARNING = 3,
         _ERROR = 4
     };
-    enum class MsgType
-    {
-        SERVER = 0,
-        PROGRAM = 1,
-        PRIVATE = 2,
-        _GROUP = 3,
-        OTHER = 4
-    };
 }
 
 namespace Information
