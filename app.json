@@ -110,6 +110,6 @@ MoeQ 的Json文件支持单行注释和多行注释
     15, //取好友列表         GetFriendList
     16, //取群列表           GetGroupList
     17, //取群成员列表       GetGroupMemberList
-    18 //取群成员列表        GetGroupAdminList
+    18 //取群管理员列表        GetGroupAdminList
   ]
 }
