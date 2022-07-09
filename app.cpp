@@ -97,10 +97,6 @@ FUNC(Event::ReturnType, MQ_MessageEvent, const Target::Target *Target, const Mes
         //return Event::ReturnType::block;
 
         break;
-    case Target::TargetType::discuss:
-        //Discuss message(EventID 1002)
-        //讨论组消息(事件ID 1002)
-        break;
     }
     return Event::ReturnType::ignore;
 }

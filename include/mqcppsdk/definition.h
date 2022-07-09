@@ -63,7 +63,6 @@ namespace Message
         uint32_t Length = 0;
         uint8_t *Contain = nullptr;
         char8_t *URL = nullptr;
-        char *Location = nullptr;
     };
 
     struct Msg
@@ -129,7 +128,6 @@ namespace Target
     {
         _private = 0,
         group = 1,
-        discuss = 2,
     };
 
     struct Target
@@ -148,11 +146,6 @@ namespace Target
     struct group
     {
         const uint32_t FromGroup;
-        const uint32_t FromQQ;
-    };
-    struct discuss
-    {
-        const uint32_t FromDiscuss;
         const uint32_t FromQQ;
     };
 }

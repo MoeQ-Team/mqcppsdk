@@ -43,10 +43,6 @@ MoeQ 的Json文件支持单行注释和多行注释
         {
           "id": 1, //群消息处理
           "priority": 2
-        },
-        {
-          "id": 2, //讨论组消息处理
-          "priority": 2
         }
       ]
     },
@@ -100,22 +96,20 @@ MoeQ 的Json文件支持单行注释和多行注释
     //1, //[敏感]取Cookies   GetCookies
     //2, //[敏感]发送赞      SendLike
     //3, //[敏感]退出群      LeaveGroup
-    //4, //[敏感]退出讨论组  LeaveDiscuss
-    5, //发送私聊消息        SendPrivateMsg
-    6, //发送群消息          SendGroupMsg
-    7, //发送讨论组消息      SendDiscussMsg
-    8, //撤回消息            DrawGroupMsg/DrawPrivateMsg
-    9, //置群禁言            SetGroupBan
-    10, //移除群员           SetGroupKick
-    11, //置群管理员         SetGroupAdmin
-    12, //置群成员头衔       SetGroupMemberTitle
-    13, //置群成员名片       SetGroupMemberCard
-    14, //取群成员信息       GetGroupMemberInfo
-    15, //取陌生人信息       GetStrangerInfo
-    16, //取群信息           GetGroupInfo
-    17, //取好友列表         GetFriendList
-    18, //取群列表           GetGroupList
-    19, //取群成员列表       GetGroupMemberList
-    20 //取群成员列表        GetGroupAdminList
+    4, //发送私聊消息        SendPrivateMsg
+    5, //发送群消息          SendGroupMsg
+    6, //撤回消息            DrawGroupMsg/DrawPrivateMsg
+    7, //置群禁言            SetGroupBan
+    8, //移除群员           SetGroupKick
+    9, //置群管理员         SetGroupAdmin
+    10, //置群成员头衔       SetGroupMemberTitle
+    11, //置群成员名片       SetGroupMemberCard
+    12, //取群成员信息       GetGroupMemberInfo
+    13, //取陌生人信息       GetStrangerInfo
+    14, //取群信息           GetGroupInfo
+    15, //取好友列表         GetFriendList
+    16, //取群列表           GetGroupList
+    17, //取群成员列表       GetGroupMemberList
+    18 //取群成员列表        GetGroupAdminList
   ]
 }

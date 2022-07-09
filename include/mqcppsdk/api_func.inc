@@ -23,11 +23,9 @@ FUNC(bool, setGroupMemberTitle, const uint32_t, const uint32_t, const char *)
 FUNC(bool, setGroupMemberCard, const uint32_t, const uint32_t, const char *)
 // Chat Action
 FUNC(bool, setGroupLeave, const uint32_t)
-FUNC(bool, setDiscussLeave, const uint32_t)
 
 FUNC(bool, sendPrivateMsg, const uint32_t, const Message::Msg *)
 FUNC(bool, sendGroupMsg, const uint32_t, const Message::Msg *)
-FUNC(bool, sendDisscussMsg, const uint32_t, const Message::Msg *)
 
 FUNC(bool, drawPrivateMsg, const uint32_t, const uint64_t)
 FUNC(bool, drawGroupMsg, const uint32_t, const uint64_t)
