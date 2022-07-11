@@ -56,13 +56,6 @@ public:
     bool LeaveGroup(const uint32_t Group);
 
     /// <summary>
-    /// 退出讨论组(Auth 4)
-    /// </summary>
-    /// <param name="Disscuss"></param>
-    /// <returns></returns>
-    bool LeaveDiscuss(const uint32_t Disscuss);
-
-    /// <summary>
     /// 发送私聊消息(Auth 5)
     /// </summary>
     /// <param name="QQ"></param>
@@ -77,15 +70,7 @@ public:
     /// <param name="Msg"></param>
     /// <returns></returns>
     bool SendGroupMsg(const uint32_t Group, const Message::Msg *Msg);
-
-    /// <summary>
-    /// 发送讨论组消息(Auth 7)
-    /// </summary>
-    /// <param name="Disscuss"></param>
-    /// <param name="Msg"></param>
-    /// <returns></returns>
-    bool SendDiscussMsg(const uint32_t Disscuss, const Message::Msg *Msg);
-
+    
     /// <summary>
     /// 撤回群聊消息(Auth 8)
     /// </summary>

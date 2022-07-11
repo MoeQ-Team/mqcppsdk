@@ -3,7 +3,7 @@ FUNC(bool, getDataPath, const char8_t *)
 
 // QQ Information
 FUNC(uint32_t, getUin)
-FUNC(char *, getCookies, const char *)
+FUNC(char8_t *, getCookies, const char8_t *)
 
 FUNC(LPBYTE, getFriendList)
 FUNC(LPBYTE, getGroupList)
@@ -19,8 +19,8 @@ FUNC(bool, sendLike, const uint32_t, const int)
 FUNC(bool, setGroupBan, const uint32_t, const uint32_t, const uint32_t)
 FUNC(bool, setGroupKick, const uint32_t, const uint32_t, const bool)
 FUNC(bool, setGroupAdmin, const uint32_t, const uint32_t, const bool)
-FUNC(bool, setGroupMemberTitle, const uint32_t, const uint32_t, const char *)
-FUNC(bool, setGroupMemberCard, const uint32_t, const uint32_t, const char *)
+FUNC(bool, setGroupMemberTitle, const uint32_t, const uint32_t, const char8_t *)
+FUNC(bool, setGroupMemberCard, const uint32_t, const uint32_t, const char8_t *)
 // Chat Action
 FUNC(bool, setGroupLeave, const uint32_t)
 

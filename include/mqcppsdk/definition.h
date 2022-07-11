@@ -6,7 +6,7 @@
 
 typedef unsigned char *LPBYTE;
 
-//following is MoeQ struction declared
+// following is MoeQ struction declared
 
 namespace Log
 {
@@ -25,14 +25,14 @@ namespace Information
     struct FriendInfo
     {
         uint32_t QQ;
-        char *Nick;
+        char8_t *Nick;
         int status;
-        char *Remark;
+        char8_t *Remark;
     };
     struct GroupInfo
     {
         uint32_t GroupCode;
-        char *GroupName;
+        char8_t *GroupName;
         uint32_t MasterQQ;
         short MemberCount;
         uint8_t SelfIdentity;
@@ -40,7 +40,7 @@ namespace Information
     struct GroupMemberInfo
     {
         uint32_t QQ;
-        char *Nick;
+        char8_t *Nick;
     };
 }
 
@@ -75,7 +75,7 @@ namespace Message
     struct text
     {
         char8_t *text;
-        uint32_t AtQQ; //if text == nullptr,this is a at,0=AtAll
+        uint32_t AtQQ; // if text == nullptr,this is a at,0=AtAll
     };
 
     struct classcal_face
@@ -139,8 +139,8 @@ namespace Target
     struct _private
     {
         const uint32_t FromQQ;
-        // 0 FromFriend 1 From Online State 2 From Group 3 From Discuss
-        // 0 来自好友 1 来自在线状态 2 来自群 3来自讨论组
+        // 0 FromFriend 1 From Online State 2 From Group
+        // 0 来自好友 1 来自在线状态 2 来自群
         const uint32_t FromType;
     };
     struct group
@@ -154,8 +154,8 @@ namespace Event
 {
     enum class ReturnType
     {
-        ignore, //Ignore 忽略
-        block,	//Block 阻塞
+        ignore, // Ignore 忽略
+        block,  // Block 阻塞
     };
 
     namespace LifeCycleEvent
@@ -173,11 +173,11 @@ namespace Event
     {
         enum class NoticeEventType
         {
-            group_fileupload,	//Group file upload 群文件上传
-            group_adminchange,	//Group administrator changes 群管理员变动
-            group_memberchange, //The change in the number of group members 群成员数量变动
-            group_mute,			//Group ban 群禁言
-            friend_added,		//Friend added 好友已添加
+            group_fileupload,   // Group file upload 群文件上传
+            group_adminchange,  // Group administrator changes 群管理员变动
+            group_memberchange, // The change in the number of group members 群成员数量变动
+            group_mute,         // Group ban 群禁言
+            friend_added,       // Friend added 好友已添加
         };
 
         struct NoticeEvent
@@ -188,8 +188,8 @@ namespace Event
 
         struct FileInfo
         {
-            char *Name;
-            char *ID;
+            char8_t *Name;
+            char8_t *ID;
             unsigned long long size;
         };
 
@@ -235,9 +235,9 @@ namespace Event
 
         enum class ReturnType
         {
-            agree,	  //Agree 同意
-            disagree, //Disagree 不同意
-            ignore,	  //Ignore 忽略
+            agree,    // Agree 同意
+            disagree, // Disagree 不同意
+            ignore,   // Ignore 忽略
         };
 
         struct RequestEvent
@@ -249,13 +249,13 @@ namespace Event
         struct add_friend
         {
             uint32_t FromQQ;
-            char *msg;
+            char8_t *msg;
         };
         struct add_group
         {
             uint32_t FromGroup;
             uint32_t FromQQ;
-            char *msg;
+            char8_t *msg;
             uint32_t Type; // 0 Others apply to join the group 他人申请入群 1 Myself was invited to join the group 自己受邀入群
         };
     }

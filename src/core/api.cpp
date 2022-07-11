@@ -55,7 +55,7 @@ uint32_t MoeQ::GetUin()
     return getUin(AuthCode);
 }
 
-char *MoeQ::GetCookies(const char *Host)
+char8_t *MoeQ::GetCookies(const char8_t *Host)
 {
     return getCookies(AuthCode, Host);
 }
@@ -70,11 +70,6 @@ bool MoeQ::LeaveGroup(const uint32_t Group)
     return setGroupLeave(AuthCode, Group);
 }
 
-bool MoeQ::LeaveDiscuss(const uint32_t Disscuss)
-{
-    return setDiscussLeave(AuthCode, Disscuss);
-}
-
 bool MoeQ::SendPrivateMsg(const uint32_t QQ, const Message::Msg *Msg)
 {
     return sendPrivateMsg(AuthCode, QQ, Msg);
@@ -83,11 +78,6 @@ bool MoeQ::SendPrivateMsg(const uint32_t QQ, const Message::Msg *Msg)
 bool MoeQ::SendGroupMsg(const uint32_t Group, const Message::Msg *Msg)
 {
     return sendGroupMsg(AuthCode, Group, Msg);
-}
-
-bool MoeQ::SendDiscussMsg(const uint32_t Disscuss, const Message::Msg *Msg)
-{
-    return sendDisscussMsg(AuthCode, Disscuss, Msg);
 }
 
 bool MoeQ::DrawGroupMsg(const uint32_t Group, const uint32_t MsgID)
@@ -115,12 +105,12 @@ bool MoeQ::SetGroupAdmin(const uint32_t Group, const uint32_t QQ, const bool Set
     return setGroupAdmin(AuthCode, Group, QQ, Set);
 }
 
-bool MoeQ::SetGroupMemberTitle(const uint32_t Group, const uint32_t QQ, const char *Title)
+bool MoeQ::SetGroupMemberTitle(const uint32_t Group, const uint32_t QQ, const char8_t *Title)
 {
     return setGroupMemberTitle(AuthCode, Group, QQ, Title);
 }
 
-bool MoeQ::SetGroupMemberCard(const uint32_t Group, const uint32_t QQ, const char *Card)
+bool MoeQ::SetGroupMemberCard(const uint32_t Group, const uint32_t QQ, const char8_t *Card)
 {
     return setGroupMemberCard(AuthCode, Group, QQ, Card);
 }
@@ -150,9 +140,9 @@ std::vector<Information::FriendInfo> *MoeQ::GetFriendList()
     for (size_t i = 0; i < length; i++)
     {
         (*FriendList)[i].QQ = UnPack.GetInt();
-        (*FriendList)[i].Nick = (char *)UnPack.GetLong();
+        (*FriendList)[i].Nick = (char8_t *)UnPack.GetLong();
         (*FriendList)[i].status = UnPack.GetInt();
-        (*FriendList)[i].Remark = (char *)UnPack.GetLong();
+        (*FriendList)[i].Remark = (char8_t *)UnPack.GetLong();
     }
     delete[] bin;
     return FriendList;
