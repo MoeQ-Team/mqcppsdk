@@ -15,7 +15,7 @@ FUNC(void, getStrangerInfo, const uint32_t)
 FUNC(void, getGroupInfo, const uint32_t)
 // Friend Action
 FUNC(bool, sendLike, const uint32_t, const int)
-// Action
+// Group Action
 FUNC(bool, setGroupBan, const uint32_t, const uint32_t, const uint32_t)
 FUNC(bool, setGroupKick, const uint32_t, const uint32_t, const bool)
 FUNC(bool, setGroupAdmin, const uint32_t, const uint32_t, const bool)
@@ -29,5 +29,9 @@ FUNC(bool, sendGroupMsg, const uint32_t, const Message::Msg *)
 
 FUNC(bool, drawPrivateMsg, const uint32_t, const uint64_t)
 FUNC(bool, drawGroupMsg, const uint32_t, const uint64_t)
+
+FUNC(bool, respFriendReq, uint64_t ResponseFlag, Event::RequestEvent::ReturnType ReturnType)
+FUNC(bool, respGroupReq, uint64_t ResponseFlag, Event::RequestEvent::ReturnType ReturnType)
+
 // Other
 FUNC(void, addLog, const Log::LogType, const char8_t *, const char8_t *)

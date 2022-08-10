@@ -77,7 +77,11 @@ MoeQ 的Json文件支持单行注释和多行注释
           "priority": 2
         },
         {
-          "id": 1, //加群
+          "id": 1, //被邀请进群
+          "priority": 2
+        },
+        {
+          "id": 1, //他人加群
           "priority": 2
         }
       ]
@@ -110,6 +114,8 @@ MoeQ 的Json文件支持单行注释和多行注释
     15, //取好友列表         GetFriendList
     16, //取群列表           GetGroupList
     17, //取群成员列表       GetGroupMemberList
-    18 //取群管理员列表        GetGroupAdminList
+    18, //取群管理员列表      GetGroupAdminList
+    19, //回复好友请求        respFriendReq
+    20  //回复群请求          respGroupReq
   ]
 }

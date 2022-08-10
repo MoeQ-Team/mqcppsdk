@@ -140,8 +140,9 @@ FUNC(Event::ReturnType, MQ_NoticeEvent, const Event::NoticeEvent::NoticeEvent *N
 /// MoeQ请求事件(事件ID 3,1008-1009)
 /// </summary>
 /// <param name="RequestEvent">Request event information 请求事件信息</param>
-/// <returns>Agree,Disagree or Ignore 同意,不同意或忽略</returns>
-FUNC(Event::RequestEvent::ReturnType, MQ_RequestEvent, const Event::RequestEvent::RequestEvent *RequestEvent, const uint32_t responseFlag)
+/// <param name="ResponseFlag"> </param>
+/// <returns>Block or Ignore 阻塞或忽略</returns>
+FUNC(Event::ReturnType, MQ_RequestEvent, const Event::RequestEvent::RequestEvent *RequestEvent, const uint32_t ResponseFlag)
 {
     switch (RequestEvent->RequestEventType)
     {
@@ -149,12 +150,16 @@ FUNC(Event::RequestEvent::ReturnType, MQ_RequestEvent, const Event::RequestEvent
         //Add friend(EventID 1008)
         //加好友(事件ID 1008)
         break;
-    case Event::RequestEvent::RequestEventType::add_group:
-        //Add group(EventID 1009)
-        //加群(事件ID 1009)
+    case Event::RequestEvent::RequestEventType::self_invited:
+        //Self been invited(EventID 1009)
+        //被邀请进群(事件ID 1009)
+        break;
+    case Event::RequestEvent::RequestEventType::other_join_group:
+        //Others join group(EventID 1010)
+        //他人加群(事件ID 1010)
         break;
     }
-    return Event::RequestEvent::ReturnType::ignore;
+    return Event::ReturnType::ignore;
 }
 
 /// <summary>
