@@ -5,9 +5,9 @@ MoeQ 的Json文件支持单行注释和多行注释
 */
 {
   "name": "MoeQ Example Plugin", // 插件名称
-  "appid":"com.moeq.demo", //插件appid
+  "appid":"com.example.demo", //插件appid
   "version": "1.0.0", // 插件版本
-  "author": "Simplxs", // 插件作者
+  "author": "MoeQ Team", // 插件作者
   "description": "This is a plugin example", // 插件描述
   "event": [ // 事件列表(发布前请删除无用事件) 可重复定义
     {
@@ -116,6 +116,6 @@ MoeQ 的Json文件支持单行注释和多行注释
     17, //取群成员列表       GetGroupMemberList
     18, //取群管理员列表      GetGroupAdminList
     19, //回复好友请求        respFriendReq
-    20  //回复群请求          respGroupReq
+    20 //回复群请求          respGroupReq
   ]
 }

@@ -149,6 +149,19 @@ FUNC(Event::ReturnType, MQ_RequestEvent, const Event::RequestEvent::RequestEvent
     case Event::RequestEvent::RequestEventType::add_friend:
         //Add friend(EventID 1008)
         //加好友(事件ID 1008)
+
+        //Write your process code here
+        //在此写你的处理代码
+        
+        MQ.RespFriendReq(ResponseFlag,Event::RequestEvent::ReturnType::agree);
+
+        //if you don't want this message to be processed by other plugins
+        //如果你不想让此消息被其他插件处理
+        //You can uncomment the following code
+        //你可以取消下面这句代码的注释
+
+        //return Event::ReturnType::block;
+
         break;
     case Event::RequestEvent::RequestEventType::self_invited:
         //Self been invited(EventID 1009)

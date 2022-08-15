@@ -140,9 +140,18 @@ std::vector<Information::FriendInfo> *MoeQ::GetFriendList()
     for (size_t i = 0; i < length; i++)
     {
         (*FriendList)[i].QQ = UnPack.GetInt();
-        (*FriendList)[i].Nick = (char8_t *)UnPack.GetLong();
+
+        int length = UnPack.GetInt();
+        
+        (*FriendList)[i].Nick = new char8_t[length + 1];
+        memcpy((*FriendList)[i].Nick, UnPack.GetStr(length), length);
+        (*FriendList)[i].Nick[length] = '\0';
+
         (*FriendList)[i].status = UnPack.GetInt();
-        (*FriendList)[i].Remark = (char8_t *)UnPack.GetLong();
+
+        (*FriendList)[i].Remark = new char8_t[length + 1];
+        memcpy((*FriendList)[i].Remark, UnPack.GetStr(length), length);
+        (*FriendList)[i].Remark[length] = '\0';
     }
     delete[] bin;
     return FriendList;
@@ -158,7 +167,11 @@ std::vector<Information::GroupInfo> *MoeQ::GetGroupList()
     for (size_t i = 0; i < length; i++)
     {
         (*GroupList)[i].GroupCode = UnPack.GetInt();
-        (*GroupList)[i].GroupName = (const char8_t *)UnPack.GetStr(UnPack.GetInt());
+
+        (*GroupList)[i].GroupName = new char8_t[UnPack.GetInt() + 1];
+        memcpy((*GroupList)[i].GroupName, UnPack.GetStr(UnPack.GetInt()), UnPack.GetInt());
+        (*GroupList)[i].GroupName[UnPack.GetInt()] = '\0';
+
         (*GroupList)[i].MasterQQ = UnPack.GetInt();
         (*GroupList)[i].MemberCount = UnPack.GetShort();
         (*GroupList)[i].SelfIdentity = UnPack.GetByte();
@@ -194,6 +207,16 @@ std::vector<uint32_t> *MoeQ::GetGroupAdminList(const uint32_t group_code)
     }
     delete[] bin;
     return GroupAdminList;
+}
+
+bool MoeQ::RespFriendReq(uint64_t ResponseFlag, Event::RequestEvent::ReturnType ReturnType)
+{
+    return respFriendReq(AuthCode, ResponseFlag, ReturnType);
+}
+
+bool MoeQ::RespGroupReq(uint64_t ResponseFlag, Event::RequestEvent::ReturnType ReturnType)
+{
+    return respGroupReq(AuthCode, ResponseFlag, ReturnType);
 }
 
 void MoeQ::AddLog(const Log::LogType LogType, const char8_t *Type, const char8_t *Msg)

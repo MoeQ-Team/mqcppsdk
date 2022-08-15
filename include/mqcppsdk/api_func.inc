@@ -30,8 +30,8 @@ FUNC(bool, sendGroupMsg, const uint32_t, const Message::Msg *)
 FUNC(bool, drawPrivateMsg, const uint32_t, const uint64_t)
 FUNC(bool, drawGroupMsg, const uint32_t, const uint64_t)
 
-FUNC(bool, respFriendReq, uint64_t ResponseFlag, Event::RequestEvent::ReturnType ReturnType)
-FUNC(bool, respGroupReq, uint64_t ResponseFlag, Event::RequestEvent::ReturnType ReturnType)
+FUNC(bool, respFriendReq, uint64_t, Event::RequestEvent::ReturnType)
+FUNC(bool, respGroupReq, uint64_t, Event::RequestEvent::ReturnType)
 
 // Other
 FUNC(void, addLog, const Log::LogType, const char8_t *, const char8_t *)
